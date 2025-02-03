@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
+import Navigation from "@/components/sections/Navigation/Navigation";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -102,6 +103,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body className={clsx("antialiased", poppins.className)}>
+        <Navigation />
         <div>{children}</div>
       </body>
     </html>
