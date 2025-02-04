@@ -14,41 +14,47 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import type { CarouselApi } from "@/components/ui/carousel";
+import { Cover } from "@/components/ui/cover";
 
-const slides = [
+interface Slide {
+  image: string;
+  title: string[];
+  highlightIndex: number[];
+  description: string;
+  buttonText: string;
+}
+
+const slides: Slide[] = [
   {
     image: "/factory/factory-3.jpg",
-    title: "Where Elegance",
-    subtitle: "Meeting Class",
-    highlight: "Textile",
+    title: ["Modern Üretim", "Tesislerimiz", "Tekstilde", "Öncü Çözümler"],
+    highlightIndex: [0],
     description:
-      "When select the best of your choice sucks, let our fabrics be an exception!",
-    buttonText: "DISCUSS A PROJECT",
+      "En son teknoloji ile donatılmış tesislerimizde, yüksek kaliteli tekstil ürünleri üretiyoruz.",
+    buttonText: "Fabrikamızı Keşfet",
   },
   {
     image: "/brands/brand-2.jpg",
-    title: "Quality in",
-    subtitle: "Every Thread",
-    highlight: "Excellence",
+    title: ["Premium", "Kumaşlar", "Mükemmel", "Tekstil Deneyimi"],
+    highlightIndex: [3],
     description:
-      "Experience the finest textile craftsmanship with our premium fabrics.",
-    buttonText: "EXPLORE PRODUCTS",
+      "Premium kumaşlarımızla en üst düzey tekstil işçiliğini deneyimleyin.",
+    buttonText: "ÜRÜNLERİ KEŞFEDİN",
   },
   {
     image: "/jungle/nature-jungle-1.jpg",
-    title: "Sustainable",
-    subtitle: "Fashion Future",
-    highlight: "Innovation",
-    description: "Leading the way in eco-friendly textile manufacturing.",
-    buttonText: "LEARN MORE",
+    title: ["Sürdürülebilir", "Tekstil", "Yenilikçi", "Yaklaşımlar"],
+    highlightIndex: [2],
+    description:
+      "Doğa bizim geleceğimiz bu yüzden çevre dostu tekstil üretiminde öncü yaklaşımımız.",
+    buttonText: "DAHA FAZLA BİLGİ",
   },
   {
     image: "/sewing/sewing-1.jpg",
-    title: "Global Textile",
-    subtitle: "Solutions",
-    highlight: "Worldwide",
-    description: "Your trusted partner in international textile trade.",
-    buttonText: "CONTACT US",
+    title: ["Global", "Tekstil", "Çözümleri", "Dünyaya"],
+    highlightIndex: [0],
+    description: "Uluslararası tekstil ticaretinde güvenilir çözüm ortağınız.",
+    buttonText: "BİZE ULAŞIN",
   },
 ];
 
@@ -92,7 +98,7 @@ const Hero = () => {
               <div className="absolute inset-0">
                 <Image
                   src={slide.image}
-                  alt={slide.title}
+                  alt={slide.title.join(" ")}
                   fill
                   className="object-cover"
                   priority={index === 0}
@@ -102,26 +108,31 @@ const Hero = () => {
               </div>
 
               {/* Content */}
-              <div className="relative h-full flex items-center">
-                <div className="container mx-auto px-4">
-                  <div className="max-w-4xl space-y-6">
-                    <div className="space-y-2">
-                      <h2 className="text-white text-6xl md:text-8xl font-bold leading-tight">
-                        {slide.title}
-                      </h2>
-                      <h2 className="text-white text-6xl md:text-8xl font-bold leading-tight">
-                        {slide.subtitle}
-                      </h2>
-                    </div>
-                    <div className="text-[#DC2626] text-7xl md:text-9xl font-bold opacity-80">
-                      {slide.highlight}
-                    </div>
-                    <p className="text-white/90 text-xl md:text-2xl max-w-2xl">
+              <div className="relative h-full flex items-center justify-center">
+                <div className="container mx-auto px-4 text-center">
+                  <div className="max-w-5xl mx-auto space-y-8">
+                    <h2 className="text-white text-4xl md:text-6xl font-bold leading-tight flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+                      {slide.title.map((word, idx) =>
+                        slide.highlightIndex.includes(idx) ? (
+                          <Cover
+                            key={idx}
+                            className="text-white font-bold text-4xl md:text-6xl"
+                          >
+                            {word}
+                          </Cover>
+                        ) : (
+                          <span key={idx} className="inline-block">
+                            {word}
+                          </span>
+                        )
+                      )}
+                    </h2>
+                    <p className="text-white/90 text-xl md:text-2xl max-w-3xl mx-auto">
                       {slide.description}
                     </p>
                     <Button
                       size="lg"
-                      className="bg-[#DC2626] hover:bg-[#B91C1C] text-white text-lg px-8 py-6 rounded-md"
+                      className="bg-[#DC2626] hover:bg-white hover:text-[#DC2626] text-white text-lg px-8 py-6 rounded-md ease-linear duration-200 transition-colors hover:shadow-lg hover:shadow-black/20"
                     >
                       {slide.buttonText}
                     </Button>
@@ -149,10 +160,10 @@ const Hero = () => {
 
         {/* Navigation Arrows */}
         <div className="absolute top-1/2 -translate-y-1/2 flex items-center justify-between w-full px-4 md:px-14">
-          <CarouselPrevious className="relative bg-white/10 hover:bg-[#DC2626] border border-neutral-900 rounded-full w-14 h-14 transition-all duration-300 group text-white hover:text-white">
+          <CarouselPrevious className="relative bg-white/10 hover:bg-[#DC2626] border-none rounded-full w-12 h-12 transition-all duration-200 group text-white hover:text-white backdrop-blur-lg">
             <ChevronLeft className="w-6 h-6transition-transform group-hover:-translate-x-1" />
           </CarouselPrevious>
-          <CarouselNext className="relative bg-white/10 hover:bg-[#DC2626] border-none rounded-full w-14 h-14 transition-all duration-300 group text-white hover:text-w">
+          <CarouselNext className="relative bg-white/10 hover:bg-[#DC2626] border-none rounded-full w-12 h-12 transition-all duration-200 group text-white hover:text-white backdrop-blur-lg">
             <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
           </CarouselNext>
         </div>
