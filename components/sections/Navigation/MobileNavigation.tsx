@@ -109,7 +109,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
 
             <Link
               href="/surdurulebilirlik"
-              className={`block py-2 ${
+              className={`block py-2 border-b border-gray-200 ${
                 pathname === "/surdurulebilirlik"
                   ? "text-[#DC2626]"
                   : "text-[#2A3855]"
@@ -118,7 +118,6 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
             >
               Sürdürülebilirlik
             </Link>
-
             <Link
               href="/iletisim"
               className={`block py-2 ${
@@ -130,7 +129,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
             </Link>
           </nav>
 
-          <div className="mt-8 border-t pt-4">
+          <div className="border-t pt-4">
             <h3 className="text-[#2A3855] font-medium mb-3">Sosyal Medya</h3>
             <div className="flex items-center gap-2">
               <a
@@ -138,7 +137,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 target="_blank"
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
               >
-                <Facebook className="w-5 h-5 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                <Facebook className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
 
               <a
@@ -146,14 +145,14 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 target="_blank"
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
               >
-                <Instagram className="w-5 h-5 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                <Instagram className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
               <a
                 href="https://www.linkedin.com/"
                 target="_blank"
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
               >
-                <LinkedIn className="w-5 h-5 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                <LinkedIn className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
 
               <a
@@ -161,14 +160,10 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 target="_blank"
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
               >
-                <XformerlyTwitter className="w-5 h-5 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                <XformerlyTwitter className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
             </div>
           </div>
-
-          <button className="w-full mt-6 bg-[#DC2626] text-white px-6 py-2 rounded hover:bg-[#B91C1C] transition-colors">
-            Get Quote
-          </button>
         </div>
       </SheetContent>
     </Sheet>
