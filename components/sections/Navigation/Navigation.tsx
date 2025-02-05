@@ -18,6 +18,7 @@ import Facebook from "@/public/social/facebook-icon";
 import Instagram from "@/public/social/instagram-icon";
 import LinkedIn from "@/public/social/linkedin-icon";
 import XformerlyTwitter from "@/public/social/x-icon";
+import LanguageChanger from "../Hero/LanguageChanger";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -68,13 +69,15 @@ const Navigation = () => {
     <>
       <header
         className={`fixed w-full z-50 transition-all duration-300 ${
-          isScrolled ? "bg-[#2A3855] shadow-lg py-4" : "bg-transparent py-0"
+          isScrolled
+            ? "bg-neutral-900/95 shadow-lg py-4"
+            : "bg-neutral-900 py-0"
         }`}
       >
         {!isScrolled && (
-          <div className="hidden md:block bg-neutral-900/90 text-white py-3.5 rounded-b-lg">
+          <div className="hidden md:block bg-neutral-100/90 text-white py-2.5 rounded-b-md">
             <div className="container mx-auto flex justify-between items-center text-sm px-4">
-              <div className="flex items-center space-x-6 text-black bg-white rounded-full px-4 py-2">
+              <div className="flex items-center space-x-6 text-neutral-100 bg-neutral-900/90 rounded-md px-4 py-2">
                 <div className="flex items-center gap-2 text-sm">
                   <Mail size={18} />
                   <span>info@example.com</span>
@@ -89,42 +92,44 @@ const Navigation = () => {
                 </div>
               </div>
               <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 text-black hover:bg-[#DC2626] hover:text-white transition-colors cursor-pointer ease-linear duration-300 text-sm">
+                <div className="flex items-center gap-2 bg-neutral-900/90 text-neutral-100 rounded-md px-4 py-2 hover:bg-[#DC2626] hover:text-white transition-colors cursor-pointer ease-linear duration-300 text-sm">
                   <Phone size={18} />
+
                   <span>+90 533 533 53 53</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <a
                     href="https://www.facebook.com/?locale=tr_TR"
                     target="_blank"
-                    className="bg-neutral-300 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
+                    className="bg-neutral-900/90 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                   >
-                    <Facebook className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                    <Facebook className="w-4 h-4 text-neutral-100 cursor-pointer transition-colors group-hover:text-neutral-100" />
                   </a>
 
                   <a
                     href="https://www.facebook.com/?locale=tr_TR"
                     target="_blank"
-                    className="bg-neutral-300 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
+                    className="bg-neutral-900/90 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                   >
-                    <Instagram className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                    <Instagram className="w-4 h-4 text-neutral-100 cursor-pointer transition-colors group-hover:text-neutral-100" />
                   </a>
                   <a
                     href="https://www.linkedin.com/"
                     target="_blank"
-                    className="bg-neutral-300 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
+                    className="bg-neutral-900/90 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                   >
-                    <LinkedIn className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                    <LinkedIn className="w-4 h-4 text-neutral-100 cursor-pointer transition-colors group-hover:text-neutral-100" />
                   </a>
 
                   <a
                     href="https://www.x.com/"
                     target="_blank"
-                    className="bg-neutral-300 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
+                    className="bg-neutral-900/90 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                   >
-                    <XformerlyTwitter className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                    <XformerlyTwitter className="w-4 h-4 text-neutral-100 cursor-pointer transition-colors group-hover:text-neutral-100" />
                   </a>
                 </div>
+                <LanguageChanger />
               </div>
             </div>
           </div>
@@ -136,7 +141,7 @@ const Navigation = () => {
             <Link href="/" className="flex items-center gap-2">
               <span
                 className={`font-bold text-2xl transition-all duration-300 ${
-                  isScrolled ? "text-white" : "text-white"
+                  isScrolled ? "text-[#DC2626]" : "text-[#DC2626]"
                 }`}
               >
                 TEKSTİL DEMO
