@@ -5,7 +5,7 @@ import Facebook from "@/public/social/facebook-icon";
 import Instagram from "@/public/social/instagram-icon";
 import LinkedIn from "@/public/social/linkedin-icon";
 import XformerlyTwitter from "@/public/social/x-icon";
-import LanguageChanger from "../Hero/LanguageChanger";
+import LanguageChanger from "./LanguageChanger";
 
 const SocialIcon = ({ icon }: { icon: string }) => {
   const icons = {

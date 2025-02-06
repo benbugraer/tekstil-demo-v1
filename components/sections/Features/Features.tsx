@@ -27,7 +27,7 @@ const features = [
   },
 ];
 
-function FeatureStepsDemo() {
+export default function Features() {
   return (
     <Section
       subtitle="Kendimizden Eminiz Kalitemize Güveniyoruz"
@@ -39,5 +39,3 @@ function FeatureStepsDemo() {
     </Section>
   );
 }
-
-export default FeatureStepsDemo;
