@@ -2,6 +2,8 @@ import Hero from "@/components/sections/Hero";
 import Features from "@/components/sections/Features/Features";
 import Subsidiaries from "@/components/sections/Subsidiaries";
 import WhoWeAre from "@/components/sections/WhoWeAre";
+import Quality from "@/components/sections/Quality";
+import Highlight from "@/components/sections/Highlight";
 export default function Home() {
   return (
     <div>
@@ -9,6 +11,8 @@ export default function Home() {
       <Features />
       <Subsidiaries />
       <WhoWeAre />
+      <Quality />
+      <Highlight />
     </div>
   );
 }
