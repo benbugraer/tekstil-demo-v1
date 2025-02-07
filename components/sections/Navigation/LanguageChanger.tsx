@@ -16,11 +16,18 @@ export default function LanguageChanger() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="inline-flex p-1.5 mr-4 items-center rounded-md space-x-2 bg-neutral-300 text-sm text-foreground transition-colors hover:bg-[#DC2626] focus:outline-none disabled:pointer-events-none disabled:opacity-50  border-none">
+        <button
+          className="inline-flex p-1.5 mr-4 items-center rounded-md space-x-2 bg-neutral-300 text-sm text-foreground transition-colors hover:bg-[#DC2626] focus:outline-none disabled:pointer-events-none disabled:opacity-50 border-none"
+          aria-label={`Dili değiştir: şu anki dil ${
+            currentLanguage === "tr" ? "Türkçe" : "English"
+          }`}
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           {currentLanguage === "tr" ? (
-            <CircleFlagsLangTr className="h-4 w-4" />
+            <CircleFlagsLangTr className="h-4 w-4" aria-hidden="true" />
           ) : (
-            <CircleFlagsGb className="h-4 w-4" />
+            <CircleFlagsGb className="h-4 w-4" aria-hidden="true" />
           )}
         </button>
       </DropdownMenuTrigger>

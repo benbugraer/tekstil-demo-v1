@@ -15,24 +15,28 @@ interface NavLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
+  ariaCurrent?: "page" | "step" | "location" | "date" | "time" | true | false;
 }
 
-const NavLink = memo(({ href, children, className }: NavLinkProps) => {
-  const pathname = usePathname();
-  const isActive = pathname === href;
+const NavLink = memo(
+  ({ href, children, className, ariaCurrent }: NavLinkProps) => {
+    const pathname = usePathname();
+    const isActive = pathname === href;
 
-  return (
-    <Link href={href} legacyBehavior passHref>
-      <NavigationMenuLink
-        className={`${className} ${
-          isActive ? "text-[#DC2626]" : "text-white hover:text-[#DC2626]"
-        }`}
-      >
-        {children}
-      </NavigationMenuLink>
-    </Link>
-  );
-});
+    return (
+      <Link href={href} legacyBehavior passHref>
+        <NavigationMenuLink
+          className={`${className} ${
+            isActive ? "text-[#DC2626]" : "text-white hover:text-[#DC2626]"
+          }`}
+          aria-current={ariaCurrent}
+        >
+          {children}
+        </NavigationMenuLink>
+      </Link>
+    );
+  }
+);
 
 NavLink.displayName = "NavLink";
 
@@ -69,12 +73,13 @@ export const MainMenu = memo(() => {
   const pathname = usePathname();
 
   return (
-    <NavigationMenu className="hidden lg:block">
+    <NavigationMenu className="hidden lg:block" aria-label="Ana Navigasyon">
       <NavigationMenuList className="space-x-2">
         <NavigationMenuItem>
           <NavLink
             href="/"
             className="px-4 py-2 transition-colors duration-200 text-lg"
+            aria-current={pathname === "/" ? "page" : undefined}
           >
             Anasayfa
           </NavLink>
@@ -87,6 +92,8 @@ export const MainMenu = memo(() => {
                 ? "text-[#DC2626]"
                 : "text-white hover:text-[#DC2626]"
             } data-[state=open]:text-[#DC2626]`}
+            aria-expanded="false"
+            aria-label="Kurumsal menüsünü aç"
           >
             Kurumsal
           </NavigationMenuTrigger>
@@ -102,6 +109,8 @@ export const MainMenu = memo(() => {
                 ? "text-[#DC2626]"
                 : "text-white hover:text-[#DC2626]"
             } data-[state=open]:text-[#DC2626]`}
+            aria-expanded="false"
+            aria-label="Hizmetlerimiz menüsünü aç"
           >
             Hizmetlerimiz
           </NavigationMenuTrigger>
@@ -114,6 +123,9 @@ export const MainMenu = memo(() => {
           <NavLink
             href="/surdurulebilirlik"
             className="px-4 py-2 transition-colors duration-200 text-lg"
+            aria-current={
+              pathname === "/surdurulebilirlik" ? "page" : undefined
+            }
           >
             Sürdürülebilirlik
           </NavLink>
@@ -123,6 +135,7 @@ export const MainMenu = memo(() => {
           <NavLink
             href="/iletisim"
             className="px-4 py-2 transition-colors duration-200 text-lg"
+            aria-current={pathname === "/iletisim" ? "page" : undefined}
           >
             İletişim
           </NavLink>
