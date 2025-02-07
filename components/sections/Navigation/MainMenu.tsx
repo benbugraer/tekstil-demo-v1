@@ -140,6 +140,15 @@ export const MainMenu = memo(() => {
             İletişim
           </NavLink>
         </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavLink
+            href="/blog"
+            className="px-4 py-2 transition-colors duration-200 text-lg"
+            aria-current={pathname === "/blog" ? "page" : undefined}
+          >
+            Blog
+          </NavLink>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

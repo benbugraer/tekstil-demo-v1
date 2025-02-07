@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
 import Navigation from "@/components/sections/Navigation/Navigation";
+import Footer from "@/components/sections/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -125,6 +126,7 @@ export default function RootLayout({
       <body className={clsx("antialiased relative", poppins.className)}>
         <Navigation />
         <div className="max-w-[2100px]  pt-16 md:pt-20">{children}</div>
+        <Footer />
       </body>
     </html>
   );
