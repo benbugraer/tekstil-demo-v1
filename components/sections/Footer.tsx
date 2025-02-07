@@ -10,11 +10,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import Facebook from "@/public/social/facebook-icon";
+import Instagram from "@/public/social/instagram-icon";
+import LinkedIn from "@/public/social/linkedin-icon";
+import XformerlyTwitter from "@/public/social/x-icon";
 
 const animationConfig = {
   container: {
     hidden: { opacity: 0, y: 50 },
+
     visible: {
       opacity: 1,
       y: 0,
@@ -49,10 +53,11 @@ const SocialLink = ({ icon, label }: SocialLinkProps) => (
     <Tooltip>
       <TooltipTrigger
         asChild
-        className="hover:bg-[#DC2626] hover:text-white transition-colors duration-300 ease-in-out"
+        className="hover:bg-neutral-900/25 hover:text-white transition-colors duration-300 ease-in-out hover:shadow-lg hover:shadow-black/20"
       >
         <Button variant="outline" size="icon" className="rounded-full">
           {icon}
+
           <span className="sr-only">{label}</span>
         </Button>
       </TooltipTrigger>
@@ -121,9 +126,12 @@ const SocialLinks = () => (
     </h3>
     <div className="mb-6 flex space-x-4">
       <SocialLink icon={<Facebook className="h-4 w-4" />} label="Facebook" />
-      <SocialLink icon={<Twitter className="h-4 w-4" />} label="Twitter" />
+      <SocialLink
+        icon={<XformerlyTwitter className="h-4 w-4" />}
+        label="Twitter"
+      />
       <SocialLink icon={<Instagram className="h-4 w-4" />} label="Instagram" />
-      <SocialLink icon={<Linkedin className="h-4 w-4" />} label="LinkedIn" />
+      <SocialLink icon={<LinkedIn className="h-4 w-4" />} label="LinkedIn" />
     </div>
   </motion.div>
 );

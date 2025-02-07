@@ -9,7 +9,7 @@ import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <div>
+    <div className="h-full w-full overflow-hidden">
       <Hero />
       <Features />
       <Subsidiaries />
