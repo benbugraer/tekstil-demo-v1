@@ -52,7 +52,7 @@ export const TopBar = () => {
                 href={link.href}
                 target="_blank"
                 className="bg-neutral-900/90 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
-                aria-label={link.label}
+                aria-label={`${link.label} sayfamızı ziyaret edin`}
               >
                 <SocialIcon icon={link.icon} />
               </a>

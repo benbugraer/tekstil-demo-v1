@@ -49,7 +49,37 @@ export const metadata: Metadata = {
       },
     ],
   },
-  manifest: "/logo/site.webmanifest",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+  manifest: "/manifest.json",
+  verification: {
+    google: "google-site-verification-code",
+  },
+  other: {
+    referrer: "origin-when-cross-origin",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "apple-mobile-web-app-title": "Tekstil Demo",
+    "format-detection": "telephone=no",
+  },
   openGraph: {
     type: "website",
     locale: "tr_TR",
@@ -75,17 +105,6 @@ export const metadata: Metadata = {
     creator: "@tekstil-demo",
     site: "@tekstil-demo",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
   alternates: {
     canonical: "https://tekstil-demo.vercel.app",
     languages: {
@@ -95,6 +114,7 @@ export const metadata: Metadata = {
   },
   category: "technology",
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{

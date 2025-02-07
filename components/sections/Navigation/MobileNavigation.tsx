@@ -133,17 +133,19 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
             <h3 className="text-[#2A3855] font-medium mb-3">Sosyal Medya</h3>
             <div className="flex items-center gap-2">
               <a
-                href="https://www.facebook.com/?locale=tr_TR"
+                href="https://www.facebook.com/"
                 target="_blank"
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
+                aria-label="Facebook sayfamızı ziyaret edin"
               >
                 <Facebook className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
 
               <a
-                href="https://www.facebook.com/?locale=tr_TR"
+                href="https://www.instagram.com/"
                 target="_blank"
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
+                aria-label="Instagram sayfamızı ziyaret edin"
               >
                 <Instagram className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
@@ -151,6 +153,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 href="https://www.linkedin.com/"
                 target="_blank"
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
+                aria-label="LinkedIn sayfamızı ziyaret edin"
               >
                 <LinkedIn className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
@@ -159,6 +162,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 href="https://www.x.com/"
                 target="_blank"
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
+                aria-label="X (Twitter) sayfamızı ziyaret edin"
               >
                 <XformerlyTwitter className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
