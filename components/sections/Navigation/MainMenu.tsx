@@ -43,10 +43,10 @@ const DropdownContent = memo(
         <li key={item.href}>
           <Link href={item.href} legacyBehavior passHref>
             <NavigationMenuLink
-              className={`block space-y-1 rounded-md p-3 leading-none no-underline hover:bg-slate-50 transition-colors ${
+              className={`block space-y-1 rounded-md p-3 leading-none no-underline border border-transparent hover:border-gray-300 hover:border hover:shadow-md  transition-colors ${
                 currentPath === item.href
                   ? "text-[#DC2626] bg-red-50"
-                  : "text-[#2A3855]"
+                  : "text-neutral-950"
               }`}
             >
               <div className="text-lg font-medium">{item.title}</div>

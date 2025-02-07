@@ -118,9 +118,9 @@ const NavigationButton = ({ direction, onClick }: NavigationButtonProps) => {
         )}
       >
         {isNext ? (
-          <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5 duration-300 ease-in-out" />
+          <ArrowRight className="w-6 h-6 " />
         ) : (
-          <ArrowLeft className="w-6 h-6 transition-transform group-hover:translate-x-0.5 duration-300 ease-in-out" />
+          <ArrowLeft className="w-6 h-6 " />
         )}
       </motion.div>
     </button>

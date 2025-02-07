@@ -102,9 +102,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className={clsx("antialiased", poppins.className)}>
+      <body className={clsx("antialiased relative", poppins.className)}>
         <Navigation />
-        <div>{children}</div>
+        <div className="max-w-[2100px]  pt-16 md:pt-20">{children}</div>
       </body>
     </html>
   );

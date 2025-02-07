@@ -5,6 +5,7 @@ import WhoWeAre from "@/components/sections/WhoWeAre";
 import Quality from "@/components/sections/Quality";
 import Highlight from "@/components/sections/Highlight";
 import Testimonials from "@/components/sections/Testimonials";
+import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Quality />
       <Highlight />
       <Testimonials />
+      <Footer />
     </div>
   );
 }
