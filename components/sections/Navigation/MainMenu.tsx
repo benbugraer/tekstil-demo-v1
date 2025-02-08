@@ -47,7 +47,7 @@ const DropdownContent = memo(
         <li key={item.href}>
           <Link href={item.href} legacyBehavior passHref>
             <NavigationMenuLink
-              className={`block space-y-1 rounded-md p-3 leading-none no-underline border border-transparent hover:border-red-500/50 hover:border hover:shadow-md  transition-colors ${
+              className={`block space-y-1 rounded-md p-3 leading-none no-underline border-2 border-transparent hover:border-red-500/50 hover:border-2 hover:bg-red-50 hover:shadow-md  transition-colors ${
                 currentPath === item.href
                   ? "text-[#DC2626] bg-red-50"
                   : "text-neutral-950"
@@ -140,7 +140,7 @@ export const MainMenu = memo(() => {
             İletişim
           </NavLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavLink
             href="/blog"
             className="px-4 py-2 transition-colors duration-200 text-lg"
@@ -148,7 +148,7 @@ export const MainMenu = memo(() => {
           >
             Blog
           </NavLink>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
       </NavigationMenuList>
     </NavigationMenu>
   );
