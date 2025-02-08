@@ -4,13 +4,12 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { getBlogPost } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
-}
+type Props = {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
+export default async function BlogPostPage({ params }: Props) {
   const post = await getBlogPost(params.slug);
 
   if (!post) {
@@ -40,7 +39,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   );
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps) {
+export async function generateMetadata({ params }: Props) {
   const post = await getBlogPost(params.slug);
 
   if (!post) {

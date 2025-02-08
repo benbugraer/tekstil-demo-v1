@@ -32,14 +32,14 @@ const boardMembers: Member[] = [
     id: 2,
     name: "Ali Çalışkan",
     title: "Yönetim Kurulu Başkan Vekili",
-    image: "/members/member-2.jpg",
+    image: "/members/member-3.jpg",
     bio: "20 yılı aşkın sektör deneyimi ile şirketin stratejik büyüme ve gelişiminde önemli rol oynamıştır.",
   },
   {
     id: 3,
     name: "Yeşim Özlale Önen",
     title: "Yönetim Kurulu Üyesi",
-    image: "/members/member-3.jpg",
+    image: "/members/member-2.jpg",
     bio: "Finans ve risk yönetimi alanındaki uzmanlığı ile şirketin finansal stratejilerinin belirlenmesinde etkin rol almaktadır.",
   },
   {
@@ -54,7 +54,7 @@ const boardMembers: Member[] = [
 const executiveMembers: Member[] = [
   {
     id: 5,
-    name: "Burak Turgut Orhun",
+    name: "Doğan Sevim",
     title: "Yönetim ve Yürütme Kurulu Başkanı",
     image: "/members/member-5.jpg",
     bio: "Şirketin genel stratejisini belirlemek ve uygulanmasını sağlamaktan sorumludur.",
@@ -68,7 +68,7 @@ const executiveMembers: Member[] = [
   },
   {
     id: 7,
-    name: "Doğan Sevim",
+    name: "Ayşe Yılmaz",
     title: "Genel Müdür Yardımcısı, Global Satış ve Pazarlama",
     image: "/members/member-7.jpg",
     bio: "Global satış stratejilerinin geliştirilmesi ve uygulanmasından sorumludur.",
