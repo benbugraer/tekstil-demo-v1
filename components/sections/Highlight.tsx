@@ -115,7 +115,7 @@ const Highlight = () => {
   };
 
   return (
-    <section className="w-full bg-[#dc2626] py-16 md:py-24">
+    <section className="w-full bg-[#dc2626] py-16 md:py-32">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -127,9 +127,10 @@ const Highlight = () => {
           {/* Left Content */}
           <motion.div className="space-y-8">
             <motion.div variants={itemVariants} className="space-y-4">
-              <h2 className="text-[#DC2626] bg-neutral-100 rounded-md  p-2 font-medium  uppercase inline-block">
+              <h2 className="text-[#DC2626] bg-neutral-100 rounded-md p-3 font-medium  uppercase inline-block">
                 İYİ TASARLANMIŞ
               </h2>
+
               <h3 className="text-4xl md:text-5xl font-bold text-white leading-tight">
                 Biz Sadece Dikişli Kumaştan Daha Fazlasını Sağlıyoruz
               </h3>

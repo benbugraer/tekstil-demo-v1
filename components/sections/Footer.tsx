@@ -142,7 +142,7 @@ const FooterBottom = () => (
     className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row"
   >
     <p className="text-sm text-primary-foreground">
-      © 2024 Tekstil Fabrikası. Tüm hakları saklıdır.
+      © 2025 Tekstil Fabrikası. Tüm hakları saklıdır.
     </p>
     <nav className="flex gap-4 text-sm">
       {[

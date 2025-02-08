@@ -32,7 +32,7 @@ const CheckIcon = () => (
 
 const WhoWeAre = () => {
   return (
-    <section className="w-full py-24 bg-[#DC2626] overflow-hidden">
+    <section className="w-full py-32 bg-[#DC2626] overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Images */}

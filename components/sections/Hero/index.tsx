@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useMemo } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -15,7 +15,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import type { CarouselApi } from "@/components/ui/carousel";
 import { Cover } from "@/components/ui/cover";
+import { cn } from "@/lib/utils";
 
+// Types
 interface Slide {
   image: string;
   title: string[];
@@ -23,6 +25,13 @@ interface Slide {
   description: string;
   buttonText: string;
 }
+
+// Constants
+const AUTOPLAY_DELAY = 5000;
+const BUTTON_BASE_STYLES =
+  "relative border-none rounded-full w-12 h-12 transition-all duration-200 group text-white";
+const BUTTON_HOVER_STYLES =
+  "hover:bg-[#DC2626] hover:text-white backdrop-blur-lg";
 
 const slides: Slide[] = [
   {
@@ -58,25 +67,123 @@ const slides: Slide[] = [
   },
 ];
 
-const Hero = () => {
+// Components
+const SlideContent: React.FC<{ slide: Slide }> = ({ slide }) => {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="flex flex-col items-center justify-center gap-8 text-center">
+          <h2 className="text-white text-4xl md:text-6xl font-bold leading-tight flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+            {slide.title.map((word, idx) =>
+              slide.highlightIndex.includes(idx) ? (
+                <Cover
+                  key={idx}
+                  className="text-white font-bold text-4xl md:text-6xl"
+                >
+                  {word}
+                </Cover>
+              ) : (
+                <span key={idx} className="inline-block">
+                  {word}
+                </span>
+              )
+            )}
+          </h2>
+          <p className="text-primary-foreground text-xl md:text-2xl max-w-3xl">
+            {slide.description}
+          </p>
+          <Button
+            size="lg"
+            className={cn(
+              "bg-[#DC2626] text-white text-lg px-8 py-6 rounded-md",
+              "hover:bg-white hover:text-[#DC2626]",
+              "transition-colors duration-300 ease-linear",
+              "hover:shadow-lg hover:shadow-black/20"
+            )}
+          >
+            {slide.buttonText}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const NavigationDots: React.FC<{
+  slides: Slide[];
+  current: number;
+  api?: CarouselApi;
+}> = ({ slides, current, api }) => {
+  return (
+    <div
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20"
+      role="tablist"
+    >
+      {slides.map((slide, index) => (
+        <button
+          key={index}
+          className={cn(
+            "h-3 rounded-full transition-all",
+            current === index
+              ? "bg-[#DC2626] w-12"
+              : "w-3 bg-white/50 hover:bg-white"
+          )}
+          onClick={() => api?.scrollTo(index)}
+          role="tab"
+          aria-label={`Slide ${index + 1}: ${slide.title.join(" ")}`}
+          aria-selected={current === index}
+        />
+      ))}
+    </div>
+  );
+};
+
+const Hero: React.FC = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     if (!api) return;
 
-    api.on("select", () => {
+    const onSelect = () => {
       setCurrent(api.selectedScrollSnap());
-    });
+    };
+
+    api.on("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
   }, [api]);
 
-  const plugin = React.useMemo(
+  const plugin = useMemo(
     () =>
       Autoplay({
-        delay: 5000,
+        delay: AUTOPLAY_DELAY,
         stopOnInteraction: false,
         stopOnMouseEnter: true,
       }),
+    []
+  );
+
+  const renderSlide = useCallback(
+    (slide: Slide, index: number) => (
+      <CarouselItem key={index} className="relative w-full h-screen">
+        <div className="absolute inset-0">
+          <Image
+            src={slide.image}
+            alt={slide.title.join(" ")}
+            fill
+            className="object-cover brightness-50"
+            priority={index === 0}
+            quality={90}
+            sizes="100vw"
+            loading={index === 0 ? "eager" : "lazy"}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
+        </div>
+        <SlideContent slide={slide} />
+      </CarouselItem>
+    ),
     []
   );
 
@@ -91,93 +198,27 @@ const Hero = () => {
           align: "start",
         }}
       >
-        <CarouselContent>
-          {slides.map((slide, index) => (
-            <CarouselItem key={index} className="relative w-full h-screen">
-              {/* Background Image with Overlay */}
-              <div className="absolute inset-0">
-                <Image
-                  src={slide.image}
-                  alt={slide.title.join(" ")}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                  quality={90}
-                  sizes="100vw"
-                  loading={index === 0 ? "eager" : "lazy"}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSAyVC0zLyAvLTMpNEA4SDQ/OzJATDk9T1FXYWFgOUlUbWJJXWFf/2wBDARUXFyAeIB4gHh4gH19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
-              </div>
+        <CarouselContent>{slides.map(renderSlide)}</CarouselContent>
 
-              {/* Content */}
-              <div className="relative h-full flex items-center justify-center">
-                <div className="container mx-auto px-4 text-center">
-                  <div className="max-w-5xl mx-auto space-y-8">
-                    <h2 className="text-white text-4xl md:text-6xl font-bold leading-tight flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
-                      {slide.title.map((word, idx) =>
-                        slide.highlightIndex.includes(idx) ? (
-                          <Cover
-                            key={idx}
-                            className="text-white font-bold text-4xl md:text-6xl"
-                          >
-                            {word}
-                          </Cover>
-                        ) : (
-                          <span key={idx} className="inline-block">
-                            {word}
-                          </span>
-                        )
-                      )}
-                    </h2>
-                    <p className="text-white/90 text-xl md:text-2xl max-w-3xl mx-auto">
-                      {slide.description}
-                    </p>
-                    <Button
-                      size="lg"
-                      className="bg-[#DC2626] hover:bg-white hover:text-[#DC2626] text-white text-lg px-8 py-6 rounded-md ease-linear duration-200 transition-colors hover:shadow-lg hover:shadow-black/20"
-                    >
-                      {slide.buttonText}
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
+        <NavigationDots slides={slides} current={current} api={api} />
 
-        {/* Custom Navigation */}
-        <div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20"
-          role="tablist"
-        >
-          {slides.map((slide, index) => (
-            <button
-              key={index}
-              className={`w-3 h-3 rounded-full transition-all ${
-                current === index
-                  ? "bg-[#DC2626] w-12"
-                  : "bg-white/50 hover:bg-white"
-              }`}
-              onClick={() => api?.scrollTo(index)}
-              role="tab"
-              aria-label={`Slide ${index + 1}: ${slide.title.join(" ")}`}
-              aria-selected={current === index}
-            />
-          ))}
-        </div>
-
-        {/* Navigation Arrows */}
         <div className="absolute top-1/2 -translate-y-1/2 flex items-center justify-between w-full px-4 md:px-14">
           <CarouselPrevious
-            className="relative bg-white/10 hover:bg-[#DC2626] border-none rounded-full w-12 h-12 transition-all duration-200 group text-white hover:text-white backdrop-blur-lg"
+            className={cn(
+              BUTTON_BASE_STYLES,
+              BUTTON_HOVER_STYLES,
+              "bg-white/10"
+            )}
             aria-label="Önceki slayt"
           >
             <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-1" />
           </CarouselPrevious>
           <CarouselNext
-            className="relative bg-white/10 hover:bg-[#DC2626] border-none rounded-full w-12 h-12 transition-all duration-200 group text-white hover:text-white backdrop-blur-lg"
+            className={cn(
+              BUTTON_BASE_STYLES,
+              BUTTON_HOVER_STYLES,
+              "bg-white/10"
+            )}
             aria-label="Sonraki slayt"
           >
             <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
