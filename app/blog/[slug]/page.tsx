@@ -3,13 +3,14 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getBlogPost } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
+import { Metadata } from "next";
 
-type Props = {
+interface PageProps {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+  searchParams: Record<string, string | string[] | undefined>;
+}
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage({ params }: PageProps) {
   const post = await getBlogPost(params.slug);
 
   if (!post) {
@@ -39,7 +40,9 @@ export default async function BlogPostPage({ params }: Props) {
   );
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const post = await getBlogPost(params.slug);
 
   if (!post) {
