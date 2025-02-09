@@ -2,12 +2,12 @@
 import { motion } from "motion/react";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
-import Image from "next/image";
 
 import { Fa6SolidHandshake } from "@/public/icons/hand-shake-icon";
 import { FluentGlobeClock24Filled } from "@/public/icons/clock-world-icon";
 import { MdiCompany } from "@/public/icons/company-icon";
 import { Fa6SolidPeopleGroup } from "@/public/icons/worker-icon";
+import { Comparison } from "./Comparison";
 
 interface StatCardProps {
   icon: React.ComponentType<{ className?: string }>;
@@ -158,12 +158,7 @@ const Highlight = () => {
             variants={imageVariants}
             className="relative h-[400px] md:h-[500px] rounded-lg overflow-hidden"
           >
-            <Image
-              src="/textile/textile-1.jpg"
-              alt="Tekstil Üretimi"
-              fill
-              className="object-cover"
-            />
+            <Comparison />
           </motion.div>
         </motion.div>
       </div>
