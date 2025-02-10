@@ -15,12 +15,10 @@ const ClientCookieConsent = dynamic(
   () => import("@/components/client/cookie-consent-wrapper")
 );
 
-const poppins = Poppins({
+export const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  preload: true,
-  fallback: ["system-ui", "arial"],
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
