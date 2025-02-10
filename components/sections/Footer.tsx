@@ -146,9 +146,15 @@ const FooterBottom = () => (
     </p>
     <nav className="flex gap-4 text-sm">
       {[
-        { href: "/gizlilik-politikasi", label: "Gizlilik Politikası" },
-        { href: "/kullanim-kosullari", label: "Kullanım Koşulları" },
-        { href: "/cerez-politikasi", label: "Çerez Politikası" },
+        {
+          href: "/politikalar/gizlilik-politikasi",
+          label: "Gizlilik Politikası",
+        },
+        {
+          href: "/politikalar/kullanim-kosullari",
+          label: "Kullanım Koşulları",
+        },
+        { href: "/politikalar/cerez-politikasi", label: "Çerez Politikası" },
       ].map((link) => (
         <Link
           key={link.href}

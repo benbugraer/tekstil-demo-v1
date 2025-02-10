@@ -135,7 +135,7 @@ const Highlight = () => {
                 Biz Sadece Dikişli Kumaştan Daha Fazlasını Sağlıyoruz
               </h3>
               <p className="text-primary-foreground leading-relaxed">
-                Fablio, tekstil sektöründeki en büyük aktörler arası
+                Tekstil Demo, tekstil sektöründeki en büyük aktörler arası
                 karşılaştırma girişimidir. Giyim malzemesi ve ev tekstili
                 sektörünün daha sürdürülebilir malzeme kaynaklarına doğru
                 ilerlemesini ve küresel çabayla uyumunu izler. Düzenli üretimin

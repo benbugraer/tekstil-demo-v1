@@ -2,12 +2,25 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
-import Navigation from "@/components/sections/Navigation/Navigation";
-import Footer from "@/components/sections/Footer";
+import dynamic from "next/dynamic";
+
+// Server components
+const Navigation = dynamic(
+  () => import("@/components/sections/Navigation/Navigation")
+);
+const Footer = dynamic(() => import("@/components/sections/Footer"));
+
+// Client components with client-side wrapper
+const ClientCookieConsent = dynamic(
+  () => import("@/components/client/cookie-consent-wrapper")
+);
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
 });
 
 export const metadata: Metadata = {
@@ -123,10 +136,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com"
+        />
+      </head>
       <body className={clsx("antialiased relative", poppins.className)}>
         <Navigation />
-        <div className="max-w-[2100px]  pt-16 md:pt-20">{children}</div>
+        <main className="max-w-[2100px]">{children}</main>
         <Footer />
+        <ClientCookieConsent />
       </body>
     </html>
   );

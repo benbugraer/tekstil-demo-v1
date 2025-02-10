@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import ManagementContent from "@/app/kurumsal/yonetim/_components/ManagementContent";
 
 export const metadata: Metadata = {
-  title: "Yönetim Kadromuz | Tekstil Fabrikası",
+  title: "Yönetim Kadromuz",
   description:
     "Şirketimizin başarısının arkasındaki deneyimli ve vizyoner ekibimiz ile sürdürülebilir büyüme ve inovasyonu hedefliyoruz. Yönetim kurulu, yürütme kurulu ve komitelerimiz hakkında detaylı bilgi edinin.",
   openGraph: {

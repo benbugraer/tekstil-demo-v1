@@ -24,9 +24,19 @@ export const KURUMSAL_ITEMS: NavItem[] = [
       "Şirketimizin yönetim kadrosu ve organizasyon yapısı hakkında bilgi alın.",
   },
   {
+    title: "Hakkımızda",
+    href: "/kurumsal/hakkimizda",
+    description: "Tekstil sektöründe 35 yıllık deneyimimiz.",
+  },
+  {
     title: "Kilometre Taşlarımız",
     href: "/kurumsal/kilometre-taslarimiz",
     description: "1970'den bugüne tekstil sektöründeki başarı hikayemiz.",
+  },
+  {
+    title: "İştiraklerimiz",
+    href: "/kurumsal/istiraklerimiz",
+    description: "İştiraklerimiz hakkında bilgi alın.",
   },
 ];
 
@@ -45,6 +55,24 @@ export const HIZMETLER_ITEMS: NavItem[] = [
     title: "Sevkiyat",
     href: "/hizmetlerimiz/sevkiyat",
     description: "Dünya çapında güvenilir ve hızlı lojistik hizmetlerimiz.",
+  },
+];
+
+export const POLICY_ITEMS: NavItem[] = [
+  {
+    title: "Gizlilik Politikası",
+    href: "/politikalar/gizlilik-politikasi",
+    description: "Kişisel verilerinizin nasıl işlendiği hakkında bilgi alın.",
+  },
+  {
+    title: "Kullanım Koşulları",
+    href: "/politikalar/kullanim-kosullari",
+    description: "Web sitemizin kullanım koşulları hakkında bilgi alın.",
+  },
+  {
+    title: "Çerez Politikası",
+    href: "/politikalar/cerez-politikasi",
+    description: "Çerez kullanımı hakkında detaylı bilgi alın.",
   },
 ];
 

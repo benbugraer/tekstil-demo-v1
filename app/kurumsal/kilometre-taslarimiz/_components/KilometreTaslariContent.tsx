@@ -15,7 +15,7 @@ const timelineData = [
         className="bg-white/5 backdrop-blur-sm rounded-lg p-6 shadow-lg"
       >
         <p className="text-neutral-700 dark:text-neutral-300">
-          Acar Tekstil, bireysel bir üretici marka olma vizyonuyla
+          Tekstil Demo, bireysel bir üretici marka olma vizyonuyla
           faaliyetlerine başladı.
         </p>
       </motion.div>
@@ -95,7 +95,7 @@ const timelineData = [
         className="bg-white/5 backdrop-blur-sm rounded-lg p-6 shadow-lg"
       >
         <p className="text-neutral-700 dark:text-neutral-300">
-          The Second Life Movement projesi hayata geçirildi. Sürdürülebilir
+          Teksitl Demo ile yeni tekstil projesi hayata geçirildi. Sürdürülebilir
           üretim hedefleri belirlendi.
         </p>
       </motion.div>
@@ -111,8 +111,8 @@ const timelineData = [
         className="bg-white/5 backdrop-blur-sm rounded-lg p-6 shadow-lg"
       >
         <p className="text-neutral-700 dark:text-neutral-300">
-          Global Recycled Standard (GRS) sertifikası alındı. ISO 14001 Çevre
-          Yönetim Sistemi sertifikası alındı.
+          Tekstil Demo olarak Tekstil Sertifika 1 ve Teksil Sertifika 2 alındı
+          ve üst düzey başarılarımıza bir yenisi eklendi
         </p>
       </motion.div>
     ),
@@ -127,8 +127,8 @@ const timelineData = [
         className="bg-white/5 backdrop-blur-sm rounded-lg p-6 shadow-lg"
       >
         <p className="text-neutral-700 dark:text-neutral-300">
-          Tekstil Etiket ve Süslemeli hazırlanması rekabetçi rakip bünyesine
-          yapılan yatırımlar artırıldı.
+          Yeni nesil tekstil alanları ile ilgili ileri görüşlü yatırımlar
+          yapıldı.
         </p>
       </motion.div>
     ),

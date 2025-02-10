@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import KilometreTaslariContent from "./_components/KilometreTaslariContent";
 
 export const metadata: Metadata = {
-  title: "Kilometre Taşlarımız | Tekstil Fabrikası",
+  title: "Kilometre Taşlarımız",
   description:
     "1987'den bugüne tekstil sektöründeki yolculuğumuz ve başarı hikayemiz. Kilometre taşlarımızla sürdürülebilir ve yenilikçi üretim.",
   openGraph: {

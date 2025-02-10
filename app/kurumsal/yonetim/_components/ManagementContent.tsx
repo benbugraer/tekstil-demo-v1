@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Dialog,
@@ -90,13 +90,6 @@ const committeeMembers: Member[] = [
     image: "/members/committee-1.jpg",
     bio: "Şirketin finansal raporlama sürecinin gözetimi, iç kontrol ve iç denetim sistemlerinin etkinliğinin değerlendirilmesi.",
   },
-  {
-    id: 10,
-    name: "Kurumsal Yönetim Komitesi",
-    title: "Kurumsal Yönetim İlkeleri Uyum",
-    image: "/members/committee-2.jpg",
-    bio: "Şirketin kurumsal yönetim ilkelerine uyumunun izlenmesi, iyileştirme önerilerinin geliştirilmesi.",
-  },
 ];
 
 const containerVariants = {
@@ -124,6 +117,7 @@ const itemVariants = {
 export default function ManagementContent() {
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("yurutme-kurulu");
 
   const handleMemberClick = (member: Member) => {
     setSelectedMember(member);
@@ -136,11 +130,11 @@ export default function ManagementContent() {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={() => handleMemberClick(member)}
-      className="cursor-pointer"
+      className="cursor-pointer h-full"
     >
-      <Card className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-white rounded-xl">
-        <CardContent className="p-0">
-          <div className="relative h-[300px] w-full group">
+      <Card className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 bg-white rounded-xl h-full flex flex-col">
+        <CardContent className="p-0 flex flex-col h-full">
+          <div className="relative aspect-[3/4] w-full">
             <Image
               src={member.image}
               alt={member.name}
@@ -149,11 +143,18 @@ export default function ManagementContent() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
-          <div className="p-6 bg-white">
-            <h3 className="text-xl font-semibold text-gray-900">
-              {member.name}
-            </h3>
-            <p className="mt-2 text-sm text-gray-600">{member.title}</p>
+          <div className="p-6 bg-white flex-grow flex flex-col justify-between">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                {member.name}
+              </h3>
+              <p className="text-sm text-gray-600">{member.title}</p>
+            </div>
+            <div className="mt-4">
+              <button className="text-[#DC2626] text-sm font-medium hover:text-[#DC2626]/80 transition-colors">
+                Detayları Görüntüle →
+              </button>
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -161,22 +162,26 @@ export default function ManagementContent() {
   );
 
   const renderMemberGrid = (members: Member[]) => (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8"
-    >
-      {members.map((member) => (
-        <MemberCard key={member.id} member={member} />
-      ))}
-    </motion.div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={activeTab}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8"
+      >
+        {members.map((member) => (
+          <MemberCard key={member.id} member={member} />
+        ))}
+      </motion.div>
+    </AnimatePresence>
   );
 
   return (
-    <div>
+    <div className="bg-neutral-50">
       {/* Hero Section */}
-      <div className="relative h-[500px] mb-16">
+      <div className="relative h-[600px] mb-16">
         <div className="absolute inset-0">
           <Image
             src="/factory/factory-3.jpg"
@@ -185,7 +190,7 @@ export default function ManagementContent() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-[#dc2626]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-neutral-50" />
         </div>
         <div className="relative h-full container mx-auto px-4">
           <motion.div
@@ -194,7 +199,7 @@ export default function ManagementContent() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="flex flex-col justify-center items-center h-full text-center"
           >
-            <h1 className="text-4xl md:text-7xl font-bold text-[#dc2626] mb-6">
+            <h1 className="text-4xl md:text-7xl font-bold text-white mb-8 tracking-tight">
               Yönetim Kadromuz
             </h1>
             <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
@@ -206,24 +211,28 @@ export default function ManagementContent() {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 pb-16">
-        <Tabs defaultValue="yonetim-kurulu" className="w-full">
-          <TabsList className="w-full flex justify-center gap-2 mb-8 bg-transparent p-1">
+      <div className="container mx-auto px-4 pb-24">
+        <Tabs
+          defaultValue="yurutme-kurulu"
+          className="w-full"
+          onValueChange={setActiveTab}
+        >
+          <TabsList className="w-full flex justify-center gap-4 mb-12 bg-transparent p-1">
             <TabsTrigger
               value="yonetim-kurulu"
-              className="text-lg px-8 py-3 data-[state=active]:bg-[#DC2626] data-[state=active]:text-white rounded-md transition-all duration-300 hover:bg-neutral-100"
+              className="text-lg px-8 py-3 data-[state=active]:bg-[#DC2626] data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-neutral-200 border border-neutral-200"
             >
               Yönetim Kurulu
             </TabsTrigger>
             <TabsTrigger
               value="yurutme-kurulu"
-              className="text-lg px-8 py-3 data-[state=active]:bg-[#DC2626] data-[state=active]:text-white rounded-md transition-all duration-300 hover:bg-neutral-100"
+              className="text-lg px-8 py-3 data-[state=active]:bg-[#DC2626] data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-neutral-200 border border-neutral-200"
             >
               Yürütme Kurulu
             </TabsTrigger>
             <TabsTrigger
               value="komiteler"
-              className="text-lg px-8 py-3 data-[state=active]:bg-[#DC2626] data-[state=active]:text-white rounded-md transition-all duration-300 hover:bg-neutral-100"
+              className="text-lg px-8 py-3 data-[state=active]:bg-[#DC2626] data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-neutral-200 border border-neutral-200"
             >
               Komiteler
             </TabsTrigger>
@@ -243,14 +252,14 @@ export default function ManagementContent() {
         </Tabs>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="max-w-3xl">
+          <DialogContent className="max-w-4xl">
             <DialogHeader>
               <DialogTitle className="text-2xl font-bold text-gray-900">
                 {selectedMember?.name}
               </DialogTitle>
             </DialogHeader>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="relative h-[400px] rounded-xl overflow-hidden">
+              <div className="relative aspect-[3/4] rounded-xl overflow-hidden">
                 {selectedMember && (
                   <Image
                     src={selectedMember.image}
