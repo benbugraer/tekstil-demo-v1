@@ -98,7 +98,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "tr_TR",
     alternateLocale: "en_US",
-    url: "https://tekstil-demo.vercel.app/",
+    url: "https://tekstil-demo-website-v1-bugra-er.vercel.app/",
     title: "Tekstil Demo Website",
     description: "Tekstil demo website açıklama kısmı.",
     siteName: "Tekstil Demo Website",
@@ -122,8 +122,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://tekstil-demo.vercel.app",
     languages: {
-      "tr-TR": "https://tekstil-demo.vercel.app/tr",
-      "en-US": "https://tekstil-demo.vercel.app/en",
+      "tr-TR": "https://tekstil-demo-website-v1-bugra-er.vercel.app/tr",
+      "en-US": "https://tekstil-demo-website-v1-bugra-er.vercel.app/en",
     },
   },
   category: "technology",
@@ -136,19 +136,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com"
-        />
-      </head>
       <body className={clsx("antialiased relative", poppins.className)}>
         <Navigation />
         <main className="max-w-[2100px]">{children}</main>
