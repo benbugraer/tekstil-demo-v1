@@ -7,61 +7,18 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig: NextConfig = {
   images: {
-    formats: ["image/webp", "image/avif"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
-    dangerouslyAllowSVG: true,
-    contentDispositionType: "attachment",
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    domains: ["tekstil-demo-website-v1-bugra-er.vercel.app"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.vercel.app",
+        hostname: "https://tekstil-demo-website-v1-bugra-er.vercel.app/",
       },
     ],
   },
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
-  assetPrefix:
-    process.env.NODE_ENV === "production"
-      ? "https://tekstil-demo-website-v1-bugra-er.vercel.app"
-      : "",
-  // Enable webpack optimization
-  webpack: (config, { dev, isServer }) => {
-    // Production optimizations
-    if (!dev && !isServer) {
-      config.optimization = {
-        ...config.optimization,
-        minimize: true,
-        moduleIds: "deterministic",
-        splitChunks: {
-          chunks: "all",
-          minSize: 20000,
-          maxSize: 244000,
-          minChunks: 1,
-          maxAsyncRequests: 30,
-          maxInitialRequests: 30,
-          cacheGroups: {
-            defaultVendors: {
-              test: /[\\/]node_modules[\\/]/,
-              priority: -10,
-              reuseExistingChunk: true,
-            },
-            default: {
-              minChunks: 2,
-              priority: -20,
-              reuseExistingChunk: true,
-            },
-          },
-        },
-      };
-    }
-    return config;
-  },
-  // Cache headers
+
+  // Cache optimization for static assets
   async headers() {
     return [
       {
@@ -76,16 +33,6 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/:all*(js|css)",
-        locale: false,
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/fonts/:all*",
         locale: false,
         headers: [
           {
