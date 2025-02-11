@@ -1,7 +1,6 @@
-import { Metadata } from "next";
-import KilometreTaslariContent from "./_components/KilometreTaslariContent";
+import TimelineContent from "./_components/Timeline";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Kilometre Taşlarımız",
   description:
     "1987'den bugüne tekstil sektöründeki yolculuğumuz ve başarı hikayemiz. Kilometre taşlarımızla sürdürülebilir ve yenilikçi üretim.",
@@ -14,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function KilometreTaslarimiz() {
-  return <KilometreTaslariContent />;
+  return <TimelineContent />;
 }

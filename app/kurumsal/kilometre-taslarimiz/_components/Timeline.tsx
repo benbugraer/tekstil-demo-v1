@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { Timeline } from "@/components/ui/timeline";
+import PagesSection from "@/components/sections/PagesSection";
 
 const timelineData = [
   {
@@ -135,50 +135,18 @@ const timelineData = [
   },
 ];
 
-export default function KilometreTaslariContent() {
+export default function TimelineContent() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative h-[50vh] min-h-[400px] w-full"
-      >
-        <Image
-          src="/factory/factory-4.jpg"
-          alt="Tekstil Fabrikası Üretim Hattı"
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <div className="text-center p-4 md:p-8 max-w-4xl mx-auto">
-            <motion.h1
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-3xl md:text-5xl font-bold mb-4 text-white bg-white/10 backdrop-blur-sm rounded-md p-6 shadow-lg"
-            >
-              Kilometre Taşlarımız
-            </motion.h1>
+    <main className="min-h-screen bg-white">
+      <PagesSection
+        title="Kilometre Taşlarımız"
+        description="1987'den bugüne, duyarlı yaşam yolculuğumuzda attığımız her adım, geleceğe olan sorumluluğumuzun bir parçası."
+        imagePath="/factory/factory-4.jpg"
+      />
 
-            <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="text-lg md:text-xl text-primary-foreground"
-            >
-              1987&apos;den bugüne, duyarlı yaşam yolculuğumuzda attığımız her
-              adım, geleceğe olan sorumluluğumuzun bir parçası.
-            </motion.p>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Timeline Section */}
-      <Timeline data={timelineData} />
-    </div>
+      <div className="container mx-auto px-4 py-12">
+        <Timeline data={timelineData} />
+      </div>
+    </main>
   );
 }

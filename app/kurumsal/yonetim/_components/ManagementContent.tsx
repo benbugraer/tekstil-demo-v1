@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import PagesSection from "@/components/sections/PagesSection";
 
 interface Member {
   id: number;
@@ -143,15 +144,15 @@ export default function ManagementContent() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
-          <div className="p-6 bg-white flex-grow flex flex-col justify-between">
+          <div className="p-4 md:p-6 bg-white flex-grow flex flex-col justify-between">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-1 md:mb-2">
                 {member.name}
               </h3>
-              <p className="text-sm text-gray-600">{member.title}</p>
+              <p className="text-xs md:text-sm text-gray-600">{member.title}</p>
             </div>
-            <div className="mt-4">
-              <button className="text-[#DC2626] text-sm font-medium hover:text-[#DC2626]/80 transition-colors">
+            <div className="mt-3 md:mt-4">
+              <button className="text-[#DC2626] text-xs md:text-sm font-medium hover:text-[#DC2626]/80 transition-colors">
                 Detayları Görüntüle →
               </button>
             </div>
@@ -169,7 +170,7 @@ export default function ManagementContent() {
         initial="hidden"
         animate="visible"
         exit="hidden"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mt-4 md:mt-8"
       >
         {members.map((member) => (
           <MemberCard key={member.id} member={member} />
@@ -180,63 +181,40 @@ export default function ManagementContent() {
 
   return (
     <div className="bg-neutral-50">
-      {/* Hero Section */}
-      <div className="relative h-[600px] mb-16">
-        <div className="absolute inset-0">
-          <Image
-            src="/factory/factory-3.jpg"
-            alt="Fabrika"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-neutral-50" />
-        </div>
-        <div className="relative h-full container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex flex-col justify-center items-center h-full text-center"
-          >
-            <h1 className="text-4xl md:text-7xl font-bold text-white mb-8 tracking-tight">
-              Yönetim Kadromuz
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              Şirketimizin başarısının arkasındaki deneyimli ve vizyoner
-              ekibimiz ile sürdürülebilir büyüme ve inovasyonu hedefliyoruz
-            </p>
-          </motion.div>
-        </div>
-      </div>
+      <PagesSection
+        title="Yönetim Kadromuz"
+        description="Şirketimizin başarısının arkasındaki deneyimli ve vizyoner ekibimiz ile sürdürülebilir büyüme ve inovasyonu hedefliyoruz"
+        imagePath="/factory/factory-3.jpg"
+      />
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 pb-24">
+      <div className="container mx-auto px-4 md:px-6 pb-12 md:pb-24">
         <Tabs
           defaultValue="yurutme-kurulu"
           className="w-full"
           onValueChange={setActiveTab}
         >
-          <TabsList className="w-full flex justify-center gap-4 mb-12 bg-transparent p-1">
-            <TabsTrigger
-              value="yonetim-kurulu"
-              className="text-lg px-8 py-3 data-[state=active]:bg-[#DC2626] data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-neutral-200 border border-neutral-200"
-            >
-              Yönetim Kurulu
-            </TabsTrigger>
-            <TabsTrigger
-              value="yurutme-kurulu"
-              className="text-lg px-8 py-3 data-[state=active]:bg-[#DC2626] data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-neutral-200 border border-neutral-200"
-            >
-              Yürütme Kurulu
-            </TabsTrigger>
-            <TabsTrigger
-              value="komiteler"
-              className="text-lg px-8 py-3 data-[state=active]:bg-[#DC2626] data-[state=active]:text-white rounded-lg transition-all duration-300 hover:bg-neutral-200 border border-neutral-200"
-            >
-              Komiteler
-            </TabsTrigger>
-          </TabsList>
+          <div className="flex justify-center mb-8 md:mb-12">
+            <TabsList className="inline-flex bg-neutral-100 p-1 rounded-lg">
+              <TabsTrigger
+                value="yonetim-kurulu"
+                className="px-3 py-2 text-sm rounded-md data-[state=active]:bg-[#DC2626] data-[state=active]:text-white transition-all duration-300"
+              >
+                Yönetim Kurulu
+              </TabsTrigger>
+              <TabsTrigger
+                value="yurutme-kurulu"
+                className="px-3 py-2 text-sm rounded-md data-[state=active]:bg-[#DC2626] data-[state=active]:text-white transition-all duration-300"
+              >
+                Yürütme Kurulu
+              </TabsTrigger>
+              <TabsTrigger
+                value="komiteler"
+                className="px-3 py-2 text-sm rounded-md data-[state=active]:bg-[#DC2626] data-[state=active]:text-white transition-all duration-300"
+              >
+                Komiteler
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
           <TabsContent value="yonetim-kurulu">
             {renderMemberGrid(boardMembers)}
@@ -252,13 +230,13 @@ export default function ManagementContent() {
         </Tabs>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="max-w-4xl">
+          <DialogContent className="max-w-[95vw] md:max-w-4xl mx-4 p-4 md:p-6">
             <DialogHeader>
-              <DialogTitle className="text-2xl font-bold text-gray-900">
+              <DialogTitle className="text-xl md:text-2xl font-bold text-gray-900">
                 {selectedMember?.name}
               </DialogTitle>
             </DialogHeader>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
               <div className="relative aspect-[3/4] rounded-xl overflow-hidden">
                 {selectedMember && (
                   <Image
@@ -269,11 +247,11 @@ export default function ManagementContent() {
                   />
                 )}
               </div>
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-900">
+              <div className="space-y-3 md:space-y-4">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900">
                   {selectedMember?.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm md:text-base text-gray-600 leading-relaxed">
                   {selectedMember?.bio}
                 </p>
               </div>
