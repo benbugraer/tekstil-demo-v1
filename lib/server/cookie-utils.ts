@@ -6,7 +6,7 @@ import { COOKIE_NAMES, COOKIE_EXPIRY, COOKIE_OPTIONS } from "../cookie-config";
 // Cookie yönetim fonksiyonları
 export const getCookie = async (name: string) => {
   const cookieStore = cookies();
-  return cookieStore.get(name);
+  return (await cookieStore).get(name);
 };
 
 export const setCookie = async (
@@ -15,7 +15,7 @@ export const setCookie = async (
   maxAge = COOKIE_EXPIRY.LONG
 ) => {
   const cookieStore = cookies();
-  cookieStore.set(name, value, {
+  (await cookieStore).set(name, value, {
     ...COOKIE_OPTIONS,
     maxAge,
   });
@@ -23,7 +23,7 @@ export const setCookie = async (
 
 export const deleteCookie = async (name: string) => {
   const cookieStore = cookies();
-  cookieStore.delete(name);
+  (await cookieStore).delete(name);
 };
 
 // Cookie izin durumunu kontrol et

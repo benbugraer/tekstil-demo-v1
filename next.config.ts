@@ -25,8 +25,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
-  swcMinify: true,
-  // Asset prefix for CDN
   assetPrefix:
     process.env.NODE_ENV === "production"
       ? "https://tekstil-demo-website-v1-bugra-er.vercel.app"
@@ -35,10 +33,8 @@ const nextConfig: NextConfig = {
   webpack: (config, { dev, isServer }) => {
     // Production optimizations
     if (!dev && !isServer) {
-      // Enable tree shaking
       config.optimization = {
         ...config.optimization,
-        usedExports: true,
         minimize: true,
         moduleIds: "deterministic",
         splitChunks: {
@@ -48,7 +44,6 @@ const nextConfig: NextConfig = {
           minChunks: 1,
           maxAsyncRequests: 30,
           maxInitialRequests: 30,
-          automaticNameDelimiter: "~",
           cacheGroups: {
             defaultVendors: {
               test: /[\\/]node_modules[\\/]/,

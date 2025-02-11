@@ -2,22 +2,15 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
-import dynamic from "next/dynamic";
+import Navigation from "@/components/sections/Navigation/Navigation";
+import Footer from "@/components/sections/Footer";
+import ClientCookieConsent from "@/components/client/cookie-consent-wrapper";
 
-// Server components
-const Navigation = dynamic(
-  () => import("@/components/sections/Navigation/Navigation")
-);
-const Footer = dynamic(() => import("@/components/sections/Footer"));
-
-// Client components with client-side wrapper
-const ClientCookieConsent = dynamic(
-  () => import("@/components/client/cookie-consent-wrapper")
-);
-
-export const poppins = Poppins({
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -76,10 +69,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
   manifest: "/manifest.json",
   verification: {
     google: "google-site-verification-code",
