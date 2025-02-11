@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "https://tekstil-demo-website-v1-bugra-er.vercel.app/",
+        hostname: "tekstil-demo-website-v1-bugra-er.vercel.app",
       },
     ],
   },
