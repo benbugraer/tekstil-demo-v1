@@ -1,20 +1,28 @@
 import { Mail, Clock, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/navigation";
-import Facebook from "@/public/social/facebook-icon";
 import Instagram from "@/public/social/instagram-icon";
 import LinkedIn from "@/public/social/linkedin-icon";
 import XformerlyTwitter from "@/public/social/x-icon";
 import LanguageChanger from "./LanguageChanger";
+import { SlSocialFacebook } from "react-icons/sl";
 
-const SocialIcon = ({ icon }: { icon: string }) => {
-  const icons = {
-    Facebook,
-    Instagram,
-    LinkedIn,
-    XformerlyTwitter,
-  };
-  const Icon = icons[icon as keyof typeof icons];
+type IconComponents = {
+  SlSocialFacebook: React.ComponentType<{ className?: string }>;
+  Instagram: React.ComponentType<{ className?: string }>;
+  LinkedIn: React.ComponentType<{ className?: string }>;
+  XformerlyTwitter: React.ComponentType<{ className?: string }>;
+};
+
+const icons: IconComponents = {
+  SlSocialFacebook,
+  Instagram,
+  LinkedIn,
+  XformerlyTwitter,
+};
+
+const SocialIcon = ({ icon }: { icon: keyof IconComponents }) => {
+  const Icon = icons[icon];
   return (
     <Icon className="w-4 h-4 text-neutral-100 cursor-pointer transition-colors group-hover:text-neutral-100" />
   );
@@ -54,7 +62,7 @@ export const TopBar = () => {
                 className="bg-neutral-900/90 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                 aria-label={`${link.label} sayfamızı ziyaret edin`}
               >
-                <SocialIcon icon={link.icon} />
+                <SocialIcon icon={link.icon as keyof IconComponents} />
               </a>
             ))}
           </div>

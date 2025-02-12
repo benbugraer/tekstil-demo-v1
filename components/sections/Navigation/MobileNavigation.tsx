@@ -12,7 +12,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import Facebook from "@/public/social/facebook-icon";
+import { BasilFacebookOutline } from "@/public/social/facebook-icon";
 import Instagram from "@/public/social/instagram-icon";
 import LinkedIn from "@/public/social/linkedin-icon";
 import XformerlyTwitter from "@/public/social/x-icon";
@@ -138,7 +138,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                 aria-label="Facebook sayfamızı ziyaret edin"
               >
-                <Facebook className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                <BasilFacebookOutline className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
 
               <a

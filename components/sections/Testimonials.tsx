@@ -180,8 +180,9 @@ export default function Testimonials() {
       title="REFERANSLAR"
       subtitle="Müşterilerimiz Ne Diyor?"
       description="Müşterilerimizin bizimle çalışmalarından sonra bize verdiği geri dönüşler."
+      className="py-20"
     >
-      <div className="relative max-w-4xl mx-auto mt-12 px-8 md:px-0">
+      <div className="relative max-w-4xl mx-auto px-8 md:px-0">
         <NavigationButton direction="prev" onClick={() => paginate(-1)} />
         <NavigationButton direction="next" onClick={() => paginate(1)} />
 

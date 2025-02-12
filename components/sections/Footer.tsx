@@ -10,7 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import Facebook from "@/public/social/facebook-icon";
+import { BasilFacebookOutline } from "@/public/social/facebook-icon";
 import Instagram from "@/public/social/instagram-icon";
 import LinkedIn from "@/public/social/linkedin-icon";
 import XformerlyTwitter from "@/public/social/x-icon";
@@ -55,7 +55,7 @@ const SocialLink = ({ icon, label }: SocialLinkProps) => (
         asChild
         className="hover:bg-neutral-900/25 hover:text-white transition-colors duration-300 ease-in-out hover:shadow-lg hover:shadow-black/20"
       >
-        <Button variant="outline" size="icon" className="rounded-full">
+        <Button variant="outline" size="icon" className="rounded-md">
           {icon}
 
           <span className="sr-only">{label}</span>
@@ -125,13 +125,43 @@ const SocialLinks = () => (
       Sosyal Medya
     </h3>
     <div className="mb-6 flex space-x-4">
-      <SocialLink icon={<Facebook className="h-4 w-4" />} label="Facebook" />
-      <SocialLink
-        icon={<XformerlyTwitter className="h-4 w-4" />}
-        label="Twitter"
-      />
-      <SocialLink icon={<Instagram className="h-4 w-4" />} label="Instagram" />
-      <SocialLink icon={<LinkedIn className="h-4 w-4" />} label="LinkedIn" />
+      <a
+        href="https://facebook.com/tekstildemo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <SocialLink
+          icon={<BasilFacebookOutline className="h-4 w-4" />}
+          label="Facebook"
+        />
+      </a>
+      <a
+        href="https://twitter.com/tekstildemo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <SocialLink
+          icon={<XformerlyTwitter className="h-4 w-4" />}
+          label="Twitter"
+        />
+      </a>
+      <a
+        href="https://instagram.com/tekstildemo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <SocialLink
+          icon={<Instagram className="h-4 w-4" />}
+          label="Instagram"
+        />
+      </a>
+      <a
+        href="https://linkedin.com/company/tekstildemo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <SocialLink icon={<LinkedIn className="h-4 w-4" />} label="LinkedIn" />
+      </a>
     </div>
   </motion.div>
 );
@@ -178,11 +208,19 @@ export default function Footer() {
       className="relative border-t bg-[#DC2626] text-foreground transition-colors duration-300"
     >
       <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <CompanyInfo />
-          <QuickLinks />
-          <ContactInfo />
-          <SocialLinks />
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+          <div className="col-span-1 flex flex-col space-y-8">
+            <CompanyInfo />
+            <div className="-mt-4">
+              <SocialLinks />
+            </div>
+          </div>
+          <div className="col-span-1 lg:col-start-2">
+            <ContactInfo />
+          </div>
+          <div className="col-span-1 lg:col-start-3">
+            <QuickLinks />
+          </div>
         </div>
         <FooterBottom />
       </div>

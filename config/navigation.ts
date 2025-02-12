@@ -79,11 +79,11 @@ export const POLICY_ITEMS: NavItem[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     href: "https://www.facebook.com/?locale=tr_TR",
-    icon: "Facebook",
+    icon: "SlSocialFacebook",
     label: "Facebook",
   },
   {
-    href: "https://www.facebook.com/?locale=tr_TR",
+    href: "https://www.instagram.com/",
     icon: "Instagram",
     label: "Instagram",
   },

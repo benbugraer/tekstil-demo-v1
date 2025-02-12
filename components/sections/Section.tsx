@@ -46,7 +46,7 @@ export default function Section({
     <section id={id || sectionId}>
       <div className={className}>
         <motion.div
-          className="relative container mx-auto px-4 py-16 max-w-7xl"
+          className="relative container mx-auto px-4 max-w-7xl"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}

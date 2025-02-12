@@ -46,61 +46,69 @@ const API_PATHS = ["/api/contact", "/api/newsletter"];
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const response = NextResponse.next();
+  const isDevelopment = process.env.NODE_ENV === "development";
 
-  // Statik dosya kontrolü
-  const fileExtension = pathname.split(".").pop()?.toLowerCase();
-  if (fileExtension && STATIC_FILE_EXTENSIONS.includes(fileExtension)) {
-    // Resim dosyaları için
-    if (
-      ["jpg", "jpeg", "png", "gif", "webp", "avif", "svg"].includes(
-        fileExtension
-      )
-    ) {
-      Object.entries(ASSET_CACHE_CONFIG.images).forEach(([key, value]) => {
-        response.headers.set(key, value);
-      });
+  if (!isDevelopment) {
+    // Statik dosya kontrolü
+    const fileExtension = pathname.split(".").pop()?.toLowerCase();
+    if (fileExtension && STATIC_FILE_EXTENSIONS.includes(fileExtension)) {
+      // Resim dosyaları için
+      if (
+        ["jpg", "jpeg", "png", "gif", "webp", "avif", "svg"].includes(
+          fileExtension
+        )
+      ) {
+        Object.entries(ASSET_CACHE_CONFIG.images).forEach(([key, value]) => {
+          response.headers.set(key, value);
+        });
+      }
+      // Font dosyaları için
+      else if (["woff", "woff2", "ttf", "eot"].includes(fileExtension)) {
+        Object.entries(ASSET_CACHE_CONFIG.fonts).forEach(([key, value]) => {
+          response.headers.set(key, value);
+        });
+      }
+      // Diğer statik dosyalar için
+      else {
+        Object.entries(ASSET_CACHE_CONFIG.static).forEach(([key, value]) => {
+          response.headers.set(key, value);
+        });
+      }
     }
-    // Font dosyaları için
-    else if (["woff", "woff2", "ttf", "eot"].includes(fileExtension)) {
-      Object.entries(ASSET_CACHE_CONFIG.fonts).forEach(([key, value]) => {
-        response.headers.set(key, value);
-      });
-    }
-    // Diğer statik dosyalar için
-    else {
+
+    // Public klasör kontrolü
+    if (PUBLIC_PATHS.some((path) => pathname.startsWith(path))) {
       Object.entries(ASSET_CACHE_CONFIG.static).forEach(([key, value]) => {
         response.headers.set(key, value);
       });
     }
+
+    // API rota kontrolü
+    if (API_PATHS.some((path) => pathname.startsWith(path))) {
+      Object.entries(ASSET_CACHE_CONFIG.api).forEach(([key, value]) => {
+        response.headers.set(key, value);
+      });
+    }
+
+    // Güvenlik başlıkları
+    response.headers.set("X-DNS-Prefetch-Control", "on");
+    response.headers.set(
+      "Strict-Transport-Security",
+      "max-age=63072000; includeSubDomains; preload"
+    );
+    response.headers.set("X-Frame-Options", "SAMEORIGIN");
+    response.headers.set("X-Content-Type-Options", "nosniff");
+    response.headers.set("Referrer-Policy", "origin-when-cross-origin");
+    response.headers.set(
+      "Permissions-Policy",
+      "camera=(), microphone=(), geolocation=()"
+    );
   }
 
-  // Public klasör kontrolü
-  if (PUBLIC_PATHS.some((path) => pathname.startsWith(path))) {
-    Object.entries(ASSET_CACHE_CONFIG.static).forEach(([key, value]) => {
-      response.headers.set(key, value);
-    });
+  // Development ortamında cache kontrolünü devre dışı bırak
+  if (isDevelopment) {
+    response.headers.set("Cache-Control", "no-store, max-age=0");
   }
-
-  // API rota kontrolü
-  if (API_PATHS.some((path) => pathname.startsWith(path))) {
-    Object.entries(ASSET_CACHE_CONFIG.api).forEach(([key, value]) => {
-      response.headers.set(key, value);
-    });
-  }
-
-  // Güvenlik başlıkları
-  response.headers.set("X-DNS-Prefetch-Control", "on");
-  response.headers.set(
-    "Strict-Transport-Security",
-    "max-age=63072000; includeSubDomains; preload"
-  );
-  response.headers.set("X-Frame-Options", "SAMEORIGIN");
-  response.headers.set("X-Content-Type-Options", "nosniff");
-  response.headers.set("Referrer-Policy", "origin-when-cross-origin");
-  response.headers.set(
-    "Permissions-Policy",
-    "camera=(), microphone=(), geolocation=()"
-  );
 
   return response;
 }

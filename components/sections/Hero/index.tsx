@@ -70,40 +70,38 @@ const slides: Slide[] = [
 // Components
 const SlideContent: React.FC<{ slide: Slide }> = ({ slide }) => {
   return (
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="container relative z-10 mx-auto px-4">
-        <div className="flex flex-col items-center justify-center gap-8 text-center">
-          <h2 className="text-white text-4xl md:text-6xl font-bold leading-tight flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
-            {slide.title.map((word, idx) =>
-              slide.highlightIndex.includes(idx) ? (
-                <Cover
-                  key={idx}
-                  className="text-white font-bold text-4xl md:text-6xl"
-                >
-                  {word}
-                </Cover>
-              ) : (
-                <span key={idx} className="inline-block">
-                  {word}
-                </span>
-              )
-            )}
-          </h2>
-          <p className="text-primary-foreground text-xl md:text-2xl max-w-3xl">
-            {slide.description}
-          </p>
-          <Button
-            size="lg"
-            className={cn(
-              "bg-[#DC2626] text-white text-lg px-8 py-6 rounded-md",
-              "hover:bg-white hover:text-[#DC2626]",
-              "transition-colors duration-300 ease-linear",
-              "hover:shadow-lg hover:shadow-black/20"
-            )}
-          >
-            {slide.buttonText}
-          </Button>
-        </div>
+    <div className="container relative z-10 h-full flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-4 text-center ">
+        <h2 className="text-white text-4xl md:text-6xl font-bold leading-tight flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
+          {slide.title.map((word, idx) =>
+            slide.highlightIndex.includes(idx) ? (
+              <Cover
+                key={idx}
+                className="text-white font-bold text-4xl md:text-6xl"
+              >
+                {word}
+              </Cover>
+            ) : (
+              <span key={idx} className="inline-block">
+                {word}
+              </span>
+            )
+          )}
+        </h2>
+        <p className="text-primary-foreground text-xl md:text-2xl max-w-3xl">
+          {slide.description}
+        </p>
+        <Button
+          size="lg"
+          className={cn(
+            "bg-[#DC2626] text-white text-base px-4 py-3 rounded-md",
+            "hover:bg-white hover:text-[#DC2626]",
+            "transition-colors duration-300 ease-linear",
+            "hover:shadow-lg hover:shadow-black/20"
+          )}
+        >
+          {slide.buttonText}
+        </Button>
       </div>
     </div>
   );
@@ -176,10 +174,8 @@ const Hero: React.FC = () => {
             className="object-cover brightness-50"
             priority={index === 0}
             quality={75}
-            sizes="(max-width: 768px) 100vw, 100vw"
+            // sizes="(max-width: 768px) 100vw, 100vw"
             loading={index === 0 ? "eager" : "lazy"}
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx0fHRsdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/2wBDAR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
         </div>
@@ -192,7 +188,6 @@ const Hero: React.FC = () => {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       <Carousel
-        className="w-full h-full"
         plugins={[plugin]}
         setApi={setApi}
         opts={{

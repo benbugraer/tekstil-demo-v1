@@ -64,19 +64,21 @@ export default function Quality() {
     <Section
       title="ENDÜSTRİLER & ÜRETİM"
       subtitle="Ayrıcalıklı Kaliteyi Yaşayalım"
+      description="Ayrıcalıklı kaliteyi yaşamak için en yüksek kalite standartlarını takip ediyoruz."
+      className="py-20"
     >
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
       >
         {qualityItems.map((item) => (
           <motion.div
             key={item.id}
             variants={itemVariants}
-            className="group relative bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100"
+            className="group relative bg-white p-8 rounded-md shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-200/90"
           >
             <div className="relative z-10">
               <div className="mb-4 inline-block p-4 bg-red-50 rounded-xl text-[#DC2626] group-hover:bg-red-600/90 group-hover:text-white transition-all duration-300">
@@ -89,7 +91,7 @@ export default function Quality() {
                 {item.description}
               </p>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-red-50/0 to-red-50/0 group-hover:from-red-50/50 group-hover:to-red-50/10 rounded-2xl transition-all duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-r from-red-50/0 to-red-50/0 group-hover:from-red-50/50 group-hover:to-red-50/10 rounded-md transition-all duration-300" />
           </motion.div>
         ))}
       </motion.div>

@@ -33,7 +33,7 @@ export default function Features() {
       subtitle="Kendimizden Eminiz Kalitemize Güveniyoruz"
       title="Çalışmalarımız Güvencemiz"
       description="Çalışmalarımızın güvence altında olması için en yüksek kalite standartlarını takip ediyoruz."
-      className="w-full py-20 lg:py-40 bg-secondary"
+      className="py-20"
     >
       <FeatureSteps features={features} autoPlayInterval={4000} />
     </Section>

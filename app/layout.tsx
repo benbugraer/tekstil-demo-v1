@@ -124,7 +124,7 @@ export default function RootLayout({
     <html lang="tr">
       <body className={clsx("antialiased relative", poppins.className)}>
         <Navigation />
-        <main className="max-w-[2100px]">{children}</main>
+        <main>{children}</main>
         <Footer />
         <ClientCookieConsent />
       </body>

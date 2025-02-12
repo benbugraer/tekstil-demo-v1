@@ -96,9 +96,9 @@ export default function Subsidiaries() {
       subtitle="İştiraklerimiz"
       title="İştiraklerimiz ile tanışın."
       description="İştiraklerimiz ile birlikte, sizin için en uygun çözümleri sunuyoruz."
-      className="w-full bg-neutral-100/95"
+      className="py-20"
     >
-      <div className="container mx-auto py-24">
+      <div>
         <div className="flex flex-col gap-4">
           <Marquee>
             {arr.map((Logo, index) => (
