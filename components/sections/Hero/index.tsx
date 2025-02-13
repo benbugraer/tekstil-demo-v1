@@ -3,6 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { useCallback, useEffect, useState, useMemo } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   Carousel,
   CarouselContent,
@@ -69,40 +70,95 @@ const slides: Slide[] = [
 
 // Components
 const SlideContent: React.FC<{ slide: Slide }> = ({ slide }) => {
+  const containerVariants = {
+    initial: {
+      opacity: 0,
+      y: 50,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.6, -0.05, 0.01, 0.99],
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      transition: {
+        duration: 0.4,
+      },
+    },
+  };
+
+  const itemVariants = {
+    initial: {
+      opacity: 0,
+      y: 20,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.6, -0.05, 0.01, 0.99],
+      },
+    },
+  };
+
   return (
     <div className="container relative z-10 h-full flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center gap-4 text-center ">
-        <h2 className="text-white text-4xl md:text-6xl font-bold leading-tight flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
-          {slide.title.map((word, idx) =>
-            slide.highlightIndex.includes(idx) ? (
-              <Cover
-                key={idx}
-                className="text-white font-bold text-4xl md:text-6xl"
-              >
-                {word}
-              </Cover>
-            ) : (
-              <span key={idx} className="inline-block">
-                {word}
-              </span>
-            )
-          )}
-        </h2>
-        <p className="text-primary-foreground text-xl md:text-2xl max-w-3xl">
-          {slide.description}
-        </p>
-        <Button
-          size="lg"
-          className={cn(
-            "bg-[#DC2626] text-white text-base px-4 py-3 rounded-md",
-            "hover:bg-white hover:text-[#DC2626]",
-            "transition-colors duration-300 ease-linear",
-            "hover:shadow-lg hover:shadow-black/20"
-          )}
+      <AnimatePresence mode="wait">
+        <motion.div
+          className="flex flex-col items-center justify-center gap-4 text-center"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={containerVariants}
         >
-          {slide.buttonText}
-        </Button>
-      </div>
+          <motion.h2
+            className="text-white text-4xl md:text-6xl font-bold leading-tight flex flex-wrap justify-center items-center gap-x-4 gap-y-2"
+            variants={itemVariants}
+          >
+            {slide.title.map((word, idx) =>
+              slide.highlightIndex.includes(idx) ? (
+                <Cover
+                  key={idx}
+                  className="text-white font-bold text-4xl md:text-6xl"
+                >
+                  {word}
+                </Cover>
+              ) : (
+                <span key={idx} className="inline-block">
+                  {word}
+                </span>
+              )
+            )}
+          </motion.h2>
+          <motion.p
+            className="text-primary-foreground text-xl md:text-2xl max-w-3xl"
+            variants={itemVariants}
+          >
+            {slide.description}
+          </motion.p>
+          <motion.div variants={itemVariants}>
+            <Button
+              size="lg"
+              className={cn(
+                "bg-[#DC2626] text-white text-base px-4 py-3 rounded-md",
+                "hover:bg-white hover:text-[#DC2626]",
+                "transition-colors duration-300 ease-linear",
+                "hover:shadow-lg hover:shadow-black/20"
+              )}
+            >
+              {slide.buttonText}
+            </Button>
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };
