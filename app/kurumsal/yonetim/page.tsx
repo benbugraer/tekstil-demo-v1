@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ManagementContent from "@/app/kurumsal/yonetim/_components/ManagementContent";
+import { PagesSection } from "@/components/sections/PagesSection";
 
 export const metadata: Metadata = {
   title: "Yönetim Kadromuz",
@@ -37,5 +38,18 @@ export const metadata: Metadata = {
 };
 
 export default function Yonetim() {
-  return <ManagementContent />;
+  return (
+    <>
+      <PagesSection
+        title="Yönetim Kadromuz"
+        description="Şirketimizin başarısının arkasındaki deneyimli ve vizyoner ekibimiz ile sürdürülebilir büyüme ve inovasyonu hedefliyoruz."
+        backgroundImage="/factory/factory-3.jpg"
+        breadcrumbs={[
+          { label: "Kurumsal", href: "/kurumsal" },
+          { label: "Yönetim" },
+        ]}
+      />
+      <ManagementContent />
+    </>
+  );
 }

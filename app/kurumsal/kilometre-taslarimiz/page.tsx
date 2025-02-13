@@ -1,4 +1,5 @@
 import TimelineContent from "./_components/Timeline";
+import { PagesSection } from "@/components/sections/PagesSection";
 
 export const metadata = {
   title: "Kilometre Taşlarımız",
@@ -13,5 +14,18 @@ export const metadata = {
 };
 
 export default function KilometreTaslarimiz() {
-  return <TimelineContent />;
+  return (
+    <>
+      <PagesSection
+        title="Kilometre Taşlarımız"
+        description="1987'den bugüne tekstil sektöründeki yolculuğumuz ve başarı hikayemiz. Kilometre taşlarımızla sürdürülebilir ve yenilikçi üretim."
+        backgroundImage="/sewing/sewing-2.jpg"
+        breadcrumbs={[
+          { label: "Kurumsal", href: "/kurumsal" },
+          { label: "Kilometre Taşlarımız" },
+        ]}
+      />
+      <TimelineContent />
+    </>
+  );
 }

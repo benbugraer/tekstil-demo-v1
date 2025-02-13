@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dialog";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import PagesSection from "@/components/sections/PagesSection";
 
 interface Member {
   id: number;
@@ -181,13 +180,7 @@ export default function ManagementContent() {
 
   return (
     <div className="bg-neutral-50">
-      <PagesSection
-        title="Yönetim Kadromuz"
-        description="Şirketimizin başarısının arkasındaki deneyimli ve vizyoner ekibimiz ile sürdürülebilir büyüme ve inovasyonu hedefliyoruz"
-        imagePath="/factory/factory-3.jpg"
-      />
-
-      <div className="container mx-auto px-4 md:px-6 pb-12 md:pb-24">
+      <div className="container mx-auto px-4 md:px-6 py-12 md:py-24">
         <Tabs
           defaultValue="yurutme-kurulu"
           className="w-full"
