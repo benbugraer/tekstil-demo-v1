@@ -1,24 +1,22 @@
 import { Mail, Clock, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/navigation";
-import Instagram from "@/public/social/instagram-icon";
-import LinkedIn from "@/public/social/linkedin-icon";
-import XformerlyTwitter from "@/public/social/x-icon";
+import { SlSocialFacebook, SlSocialLinkedin } from "react-icons/sl";
+import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 import LanguageChanger from "./LanguageChanger";
-import { SlSocialFacebook } from "react-icons/sl";
 
 type IconComponents = {
-  SlSocialFacebook: React.ComponentType<{ className?: string }>;
-  Instagram: React.ComponentType<{ className?: string }>;
-  LinkedIn: React.ComponentType<{ className?: string }>;
-  XformerlyTwitter: React.ComponentType<{ className?: string }>;
+  SlSocialFacebook: typeof SlSocialFacebook;
+  FaInstagram: typeof FaInstagram;
+  SlSocialLinkedin: typeof SlSocialLinkedin;
+  FaXTwitter: typeof FaXTwitter;
 };
 
 const icons: IconComponents = {
   SlSocialFacebook,
-  Instagram,
-  LinkedIn,
-  XformerlyTwitter,
+  FaInstagram,
+  SlSocialLinkedin,
+  FaXTwitter,
 };
 
 const SocialIcon = ({ icon }: { icon: keyof IconComponents }) => {

@@ -10,10 +10,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { BasilFacebookOutline } from "@/public/social/facebook-icon";
-import Instagram from "@/public/social/instagram-icon";
-import LinkedIn from "@/public/social/linkedin-icon";
-import XformerlyTwitter from "@/public/social/x-icon";
+import { SlSocialFacebook, SlSocialLinkedin } from "react-icons/sl";
+import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 const animationConfig = {
   container: {
@@ -53,7 +51,7 @@ const SocialLink = ({ icon, label }: SocialLinkProps) => (
     <Tooltip>
       <TooltipTrigger
         asChild
-        className="hover:bg-neutral-900/25 hover:text-white transition-colors duration-300 ease-in-out hover:shadow-lg hover:shadow-black/20"
+        className="bg-neutral-100 border-none  transition-colors ease-linear duration-200 hover:text-[#DC2626]"
       >
         <Button variant="outline" size="icon" className="rounded-md">
           {icon}
@@ -131,7 +129,7 @@ const SocialLinks = () => (
         rel="noopener noreferrer"
       >
         <SocialLink
-          icon={<BasilFacebookOutline className="h-4 w-4" />}
+          icon={<SlSocialFacebook className="h-4 w-4" />}
           label="Facebook"
         />
       </a>
@@ -140,10 +138,7 @@ const SocialLinks = () => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        <SocialLink
-          icon={<XformerlyTwitter className="h-4 w-4" />}
-          label="Twitter"
-        />
+        <SocialLink icon={<FaXTwitter className="h-4 w-4" />} label="Twitter" />
       </a>
       <a
         href="https://instagram.com/tekstildemo"
@@ -151,7 +146,7 @@ const SocialLinks = () => (
         rel="noopener noreferrer"
       >
         <SocialLink
-          icon={<Instagram className="h-4 w-4" />}
+          icon={<FaInstagram className="h-4 w-4" />}
           label="Instagram"
         />
       </a>
@@ -160,7 +155,10 @@ const SocialLinks = () => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        <SocialLink icon={<LinkedIn className="h-4 w-4" />} label="LinkedIn" />
+        <SocialLink
+          icon={<SlSocialLinkedin className="h-4 w-4" />}
+          label="LinkedIn"
+        />
       </a>
     </div>
   </motion.div>

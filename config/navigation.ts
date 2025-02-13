@@ -84,17 +84,17 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     href: "https://www.instagram.com/",
-    icon: "Instagram",
+    icon: "FaInstagram",
     label: "Instagram",
   },
   {
     href: "https://www.linkedin.com/",
-    icon: "LinkedIn",
+    icon: "SlSocialLinkedin",
     label: "LinkedIn",
   },
   {
     href: "https://www.x.com/",
-    icon: "XformerlyTwitter",
+    icon: "FaXTwitter",
     label: "X (Twitter)",
   },
 ];

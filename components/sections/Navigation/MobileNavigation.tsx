@@ -12,10 +12,8 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { BasilFacebookOutline } from "@/public/social/facebook-icon";
-import Instagram from "@/public/social/instagram-icon";
-import LinkedIn from "@/public/social/linkedin-icon";
-import XformerlyTwitter from "@/public/social/x-icon";
+import { SlSocialFacebook, SlSocialLinkedin } from "react-icons/sl";
+import { FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 interface MobileNavigationProps {
   isOpen: boolean;
@@ -138,7 +136,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                 aria-label="Facebook sayfamızı ziyaret edin"
               >
-                <BasilFacebookOutline className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                <SlSocialFacebook className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
 
               <a
@@ -147,7 +145,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                 aria-label="Instagram sayfamızı ziyaret edin"
               >
-                <Instagram className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                <FaInstagram className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
               <a
                 href="https://www.linkedin.com/"
@@ -155,7 +153,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                 aria-label="LinkedIn sayfamızı ziyaret edin"
               >
-                <LinkedIn className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                <SlSocialLinkedin className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
 
               <a
@@ -164,7 +162,7 @@ const MobileNavigation = ({ isOpen, onClose }: MobileNavigationProps) => {
                 className="bg-neutral-100 rounded-md p-1.5 hover:bg-[#DC2626] transition-colors ease-linear duration-300 group"
                 aria-label="X (Twitter) sayfamızı ziyaret edin"
               >
-                <XformerlyTwitter className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
+                <FaXTwitter className="w-4 h-4 text-neutral-800 cursor-pointer transition-colors group-hover:text-neutral-100" />
               </a>
             </div>
           </div>
