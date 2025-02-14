@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
-import Navigation from "@/components/sections/Navigation/Navigation";
 import Footer from "@/components/sections/Footer";
 // import ClientCookieConsent from "@/components/client/cookie-consent-wrapper";
+import Navigation from "@/components/sections/Navigation/Navigation";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -122,7 +122,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      <body className={clsx("antialiased relative", poppins.className)}>
+      <body
+        className={clsx(
+          "antialiased relative suppressHydrationWarning ",
+          poppins.className
+        )}
+      >
         <Navigation />
         <main>{children}</main>
         <Footer />

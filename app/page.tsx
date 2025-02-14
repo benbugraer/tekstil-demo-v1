@@ -5,7 +5,6 @@ import WhoWeAre from "@/components/sections/WhoWeAre";
 import Quality from "@/components/sections/Quality";
 import Highlight from "@/components/sections/Highlight";
 import Testimonials from "@/components/sections/Testimonials";
-
 export default function Home() {
   return (
     <div className="h-full w-full overflow-hidden">

@@ -170,7 +170,7 @@ const NavigationDots: React.FC<{
 }> = ({ slides, current, api }) => {
   return (
     <div
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20"
+      className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20"
       role="tablist"
     >
       {slides.map((slide, index) => (
@@ -221,30 +221,42 @@ const Hero: React.FC = () => {
 
   const renderSlide = useCallback(
     (slide: Slide, index: number) => (
-      <CarouselItem key={index} className="relative w-full h-screen">
+      <CarouselItem
+        key={index}
+        className="relative w-full min-h-[500px] h-[calc(100vh-140px)] flex flex-col"
+      >
         <div className="absolute inset-0">
           <Image
             src={slide.image}
             alt={slide.title.join(" ")}
             fill
-            className="object-cover brightness-50"
+            className="object-cover object-center brightness-[0.4] transition-all duration-300"
             priority={index === 0}
-            quality={60}
-            sizes="100vw"
+            quality={90}
+            sizes="(max-width: 640px) 100vw, 
+                   (max-width: 1024px) 100vw,
+                   100vw"
             loading={index === 0 ? "eager" : "lazy"}
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx0fHRsdHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/2wBDAR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR0dHR3/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50" />
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40"
+            aria-hidden="true"
+          />
         </div>
-        <SlideContent slide={slide} />
+        <SlideContent
+          slide={slide}
+          // Remove className prop since it's not accepted by SlideContent component
+          // according to the type error
+        />
       </CarouselItem>
     ),
     []
   );
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative w-full overflow-hidden">
       <Carousel
         plugins={[plugin]}
         setApi={setApi}
@@ -252,8 +264,11 @@ const Hero: React.FC = () => {
           loop: true,
           align: "start",
         }}
+        className="h-full"
       >
-        <CarouselContent>{slides.map(renderSlide)}</CarouselContent>
+        <CarouselContent className="h-full">
+          {slides.map(renderSlide)}
+        </CarouselContent>
 
         <NavigationDots slides={slides} current={current} api={api} />
 

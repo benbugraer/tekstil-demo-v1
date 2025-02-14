@@ -36,12 +36,12 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
       ease: "easeOut",
     },
   },
@@ -57,12 +57,12 @@ export function PagesSection({
   return (
     <section
       className={cn(
-        "relative w-full min-h-[40vh] lg:min-h-[50vh] flex items-center",
+        "relative w-full h-[45vh] md:h-[50vh] lg:h-[60vh] flex flex-col",
         className
       )}
     >
-      {/* Background Image with Enhanced Overlay */}
-      <div className="absolute inset-0 w-full h-full">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
         <Image
           src={backgroundImage}
           alt={title}
@@ -71,67 +71,76 @@ export function PagesSection({
           priority
           quality={90}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.75) 100%)",
+          }}
+        />
       </div>
 
-      {/* Content Container */}
+      {/* Content */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative w-full"
+        className="relative z-10 flex flex-col items-center w-full h-full"
       >
-        <div className="container mx-auto px-4 md:px-6 py-20 lg:py-32">
-          {/* Breadcrumb Navigation with Enhanced Visibility */}
-          <motion.div variants={itemVariants} className="mb-8 md:mb-12">
-            <Breadcrumb className="bg-[#DC2626]/70 inline-block px-4 py-2 rounded-lg backdrop-blur-sm">
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink
-                    href="/"
-                    className="text-white/90 hover:text-neutral-900 transition-colors"
-                  >
-                    Ana Sayfa
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="text-white/60" />
-                {breadcrumbs.map((crumb, index) => (
-                  <div key={index} className="flex items-center">
-                    {index === breadcrumbs.length - 1 ? (
-                      <BreadcrumbPage className="text-white font-medium">
-                        {crumb.label}
-                      </BreadcrumbPage>
-                    ) : (
-                      <>
-                        <BreadcrumbItem>
-                          <BreadcrumbLink
-                            href={crumb.href || "#"}
-                            className="text-white/90 hover:text-white transition-colors"
-                          >
-                            {crumb.label}
-                          </BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator className="text-white/60" />
-                      </>
-                    )}
-                  </div>
-                ))}
-              </BreadcrumbList>
-            </Breadcrumb>
-          </motion.div>
+        {/* Breadcrumbs */}
+        <motion.div
+          variants={itemVariants}
+          className="w-full container mx-auto px-4 pt-8"
+        >
+          <Breadcrumb className="inline-flex bg-[#DC2626]/90 px-3 py-1.5 rounded-md backdrop-blur-sm">
+            <BreadcrumbList className="flex items-center text-sm">
+              <BreadcrumbItem>
+                <BreadcrumbLink
+                  href="/"
+                  className="text-white hover:text-white/80 transition-colors"
+                >
+                  Ana Sayfa
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="text-white/60 mx-2" />
+              {breadcrumbs.map((crumb, index) => (
+                <div key={index} className="flex items-center">
+                  {index === breadcrumbs.length - 1 ? (
+                    <BreadcrumbPage className="text-white font-medium">
+                      {crumb.label}
+                    </BreadcrumbPage>
+                  ) : (
+                    <>
+                      <BreadcrumbItem>
+                        <BreadcrumbLink
+                          href={crumb.href || "#"}
+                          className="text-white hover:text-white/80 transition-colors"
+                        >
+                          {crumb.label}
+                        </BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator className="text-white/60 mx-2" />
+                    </>
+                  )}
+                </div>
+              ))}
+            </BreadcrumbList>
+          </Breadcrumb>
+        </motion.div>
 
-          {/* Title and Description with Enhanced Typography */}
-          <div className="max-w-5xl">
+        {/* Title and Description */}
+        <div className="flex-1 flex flex-col items-center justify-center w-full">
+          <div className="text-center max-w-3xl mx-auto px-4">
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 md:mb-8 leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
             >
               {title}
             </motion.h1>
             {description && (
               <motion.p
                 variants={itemVariants}
-                className="text-lg md:text-xl text-white/90 leading-relaxed max-w-3xl"
+                className="text-base sm:text-lg text-white/90"
               >
                 {description}
               </motion.p>

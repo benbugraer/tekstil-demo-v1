@@ -1,3 +1,5 @@
+"use client";
+
 import { Mail, Clock, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { CONTACT_INFO, SOCIAL_LINKS } from "@/config/navigation";
@@ -111,7 +113,7 @@ export const TopBar = () => {
 
   return (
     <motion.div
-      className="hidden md:block bg-neutral-100/90 text-white overflow-hidden"
+      className="hidden md:block bg-neutral-900 border-b border-neutral-800/50 text-white overflow-hidden"
       variants={containerVariants}
       initial="initial"
       animate="animate"
@@ -122,15 +124,17 @@ export const TopBar = () => {
         variants={contentVariants}
       >
         <motion.div
-          className="flex items-center space-x-6 text-neutral-100 bg-neutral-900/90 rounded-md px-4 py-2"
+          className="flex items-center space-x-6 text-neutral-1001"
           variants={itemVariants}
         >
           <motion.div
-            className="flex items-center gap-2 text-sm"
+            className="flex items-center gap-2 text-sm hover:text-neutral-100 hover:bg-[#DC2626] rounded-md px-2 py-1 transition-colors ease-linear duration-300"
             variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <Mail size={18} />
-            <span>{CONTACT_INFO.email}</span>
+            <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a>
           </motion.div>
           <Separator
             orientation="vertical"
