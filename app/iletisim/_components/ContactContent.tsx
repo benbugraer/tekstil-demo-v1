@@ -30,7 +30,7 @@ export default function ContactContent() {
     <>
       <PagesSection
         title="İletişim"
-        description="Bizimle iletişime geçin"
+        description="Uzman satış ekibimiz ve üstün satış gücümüzle, dünyanın en prestijli markalarına; katma değer yaratarak ve yolun her adımında yüksek kalite standartlarımızı benimseyerek hizmet veriyoruz."
         backgroundImage="/factory/factory-1.jpg"
         breadcrumbs={[
           {
