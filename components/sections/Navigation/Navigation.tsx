@@ -75,7 +75,7 @@ const Navigation = () => {
   return (
     <>
       <motion.header
-        className="fixed w-full z-50 bg-neutral-900"
+        className="w-full z-50 bg-neutral-900"
         variants={headerVariants}
         initial="initial"
         animate={isScrolled ? ["animate", "scrolled"] : "animate"}

@@ -4,7 +4,7 @@ import "./globals.css";
 import clsx from "clsx";
 import Navigation from "@/components/sections/Navigation/Navigation";
 import Footer from "@/components/sections/Footer";
-import ClientCookieConsent from "@/components/client/cookie-consent-wrapper";
+// import ClientCookieConsent from "@/components/client/cookie-consent-wrapper";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -126,7 +126,7 @@ export default function RootLayout({
         <Navigation />
         <main>{children}</main>
         <Footer />
-        <ClientCookieConsent />
+        {/* <ClientCookieConsent /> */}
       </body>
     </html>
   );

@@ -57,7 +57,7 @@ export function PagesSection({
   return (
     <section
       className={cn(
-        "relative w-full min-h-[40vh] lg:min-h-[60vh] flex items-center",
+        "relative w-full min-h-[40vh] lg:min-h-[50vh] flex items-center",
         className
       )}
     >

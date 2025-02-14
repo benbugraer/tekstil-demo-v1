@@ -118,7 +118,7 @@ export const TopBar = () => {
       exit="exit"
     >
       <motion.div
-        className="container mx-auto flex justify-between items-center text-sm px-4 py-2.5"
+        className="container mx-auto flex justify-between items-center text-sm px-4 py-2"
         variants={contentVariants}
       >
         <motion.div
